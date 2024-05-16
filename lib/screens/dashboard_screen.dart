@@ -1,10 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:gap/gap.dart';
 import 'package:garden_app/model/my_product.dart';
-import 'package:garden_app/screens/bottom_screen/home_screen.dart';
 import 'package:garden_app/screens/detailscreen.dart';
 import 'package:garden_app/widgets/product_card.dart';
+import 'package:garden_app/widgets/profile_screen.dart';
 import 'package:get/get.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -17,6 +18,13 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   TextEditingController t1 = TextEditingController();
   int isSelected = 0;
+  int selectedBottomIocnIndex = 0;
+
+  void _onItemTapped(int index) {
+    setState(() {
+      selectedBottomIocnIndex = index;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,64 +44,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
             categories(),
             const SizedBox(height: 10),
             cardView(context),
-            Container(
-              height: 65,
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(100),
-                  color: const Color(0xffFFFFFF),
-                  border: Border.all(color: const Color(0xff717171), width: 0.1)),
-              child: Column(
-                children: [
-                  const Gap(10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      CircleAvatar(
-                        backgroundColor: const Color(0xffD0D5DD),
-                        child: IconButton(
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(
-                              builder: (context) {
-                                return const HomeScreenPage();
-                              },
-                            ));
-                          },
-                          icon: const Icon(
-                            CupertinoIcons.home,
-                            color: Color(0xff475E3E),
-                            size: 26,
-                          ),
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: const Icon(
-                          CupertinoIcons.heart_fill,
-                          color: Color(0xffD0D5DD),
-                          size: 26,
-                        ),
-                      ),
-                      // Icon(
-                      //   CupertinoIcons.heart_fill,
-                      //   color: Color(0xffD0D5DD),
-                      //   size: 26,
-                      // ),
-                      const SizedBox(width: 10),
-                      const Icon(
-                        CupertinoIcons.shopping_cart,
-                        color: Color(0xffD0D5DD),
-                        size: 26,
-                      ),
-                      const Icon(
-                        CupertinoIcons.profile_circled,
-                        color: Color(0xffD0D5DD),
-                        size: 26,
-                      ),
-                    ],
-                  )
-                ],
-              ),
-            ),
             const Gap(0.5)
           ],
         ),
@@ -108,15 +58,87 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: const Icon(CupertinoIcons.qrcode_viewfinder, color: Colors.white),
         ),
       ),
+      bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed, // To allow more than 3 items
+        currentIndex: selectedBottomIocnIndex,
+        onTap: _onItemTapped,
+        items: [
+          BottomNavigationBarItem(
+            icon: CircleAvatar(
+              backgroundColor: selectedBottomIocnIndex == 0 ? const Color(0xffD0D5DD) : Colors.transparent,
+              child: IconButton(
+                onPressed: () {
+                  _onItemTapped(0);
+                },
+                icon: const Icon(
+                  Icons.home,
+                  color: Color(0xff475E3E),
+                  size: 26,
+                ),
+              ),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {
+                _onItemTapped(1);
+              },
+              icon: Icon(
+                Icons.favorite,
+                color: selectedBottomIocnIndex == 1 ? Colors.white : const Color(0xffD0D5DD),
+                size: 26,
+              ),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {
+                _onItemTapped(2);
+              },
+              icon: Icon(
+                Icons.shopping_cart,
+                color: selectedBottomIocnIndex == 2 ? Colors.white : const Color(0xffD0D5DD),
+                size: 26,
+              ),
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: IconButton(
+              onPressed: () {
+                _onItemTapped(3);
+              },
+              icon: Icon(
+                Icons.person,
+                color: selectedBottomIocnIndex == 3 ? Colors.white : const Color(0xffD0D5DD),
+                size: 26,
+              ),
+            ),
+            label: '',
+          ),
+        ],
+      ),
     );
   }
 
   Widget topbar() {
     return Row(
       children: [
-        const CircleAvatar(
+        CircleAvatar(
           radius: 24,
-          backgroundImage: AssetImage("assets/profile.png"),
+          child: GestureDetector(
+            onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileScreen(),
+                )),
+            child: const Image(
+              image: AssetImage("assets/profile.png"),
+            ),
+          ),
+          // backgroundImage: AssetImage("assets/profile.png"),
         ),
         const Gap(14),
         const Column(
