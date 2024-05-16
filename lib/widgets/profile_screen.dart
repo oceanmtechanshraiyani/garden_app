@@ -14,15 +14,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
       appBar: AppBar(),
       body: SingleChildScrollView(
         child: Container(
+          alignment: Alignment.center,
           child: const Column(
             children: [
               SizedBox(
                 height: 120,
-                width: 120,
+                width: 220,
                 child: Image(
-                  image: AssetImage("assets/profile.png"),
-                  //   height: 200,
-                  //   width: 200,
+                  image: NetworkImage(
+                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVvMOz18aK4pyS5Vvl-C43QuHflXYlUx8p3TgIWSvilCf8KW4-itbJKcKBqsFBC1RkUx8&usqp=CAU"),
                 ),
               ),
               SizedBox(height: 10),
