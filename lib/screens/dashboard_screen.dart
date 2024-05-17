@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/model/my_product.dart';
 import 'package:garden_app/screens/detailscreen.dart';
 import 'package:garden_app/widgets/product_card.dart';
@@ -34,92 +33,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            const Gap(12),
+            SizedBox(height: 12.h),
             topbar(),
-            const Gap(2),
+            SizedBox(height: 2.h),
             location(),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             searchbar(),
-            const SizedBox(height: 20),
+            SizedBox(height: 20.h),
             categories(),
-            const SizedBox(height: 10),
+            SizedBox(height: 10.h),
             cardView(context),
-            const Gap(0.5)
+            SizedBox(height: 0.5.h)
           ],
         ),
       ),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: Padding(
-        padding: const EdgeInsets.all(30.0),
-        child: FloatingActionButton(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100)),
-          onPressed: () {},
-          backgroundColor: const Color(0xff475E3E),
-          child: const Icon(CupertinoIcons.qrcode_viewfinder, color: Colors.white),
-        ),
+      floatingActionButton: FloatingActionButton(
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.r)),
+        onPressed: () {},
+        backgroundColor: const Color(0xff475E3E),
+        child: const Icon(CupertinoIcons.qrcode_viewfinder, color: Colors.white),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        type: BottomNavigationBarType.fixed, // To allow more than 3 items
-        currentIndex: selectedBottomIocnIndex,
-        onTap: _onItemTapped,
-        items: [
-          BottomNavigationBarItem(
-            icon: CircleAvatar(
-              backgroundColor: selectedBottomIocnIndex == 0 ? const Color(0xffD0D5DD) : Colors.transparent,
-              child: IconButton(
-                onPressed: () {
-                  _onItemTapped(0);
-                },
-                icon: const Icon(
-                  Icons.home,
-                  color: Color(0xff475E3E),
-                  size: 26,
-                ),
-              ),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: IconButton(
-              onPressed: () {
-                _onItemTapped(1);
-              },
-              icon: Icon(
-                Icons.favorite,
-                color: selectedBottomIocnIndex == 1 ? Colors.white : const Color(0xffD0D5DD),
-                size: 26,
-              ),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: IconButton(
-              onPressed: () {
-                _onItemTapped(2);
-              },
-              icon: Icon(
-                Icons.shopping_cart,
-                color: selectedBottomIocnIndex == 2 ? Colors.white : const Color(0xffD0D5DD),
-                size: 26,
-              ),
-            ),
-            label: '',
-          ),
-          BottomNavigationBarItem(
-            icon: IconButton(
-              onPressed: () {
-                _onItemTapped(3);
-              },
-              icon: Icon(
-                Icons.person,
-                color: selectedBottomIocnIndex == 3 ? Colors.white : const Color(0xffD0D5DD),
-                size: 26,
-              ),
-            ),
-            label: '',
-          ),
-        ],
-      ),
+      bottomNavigationBar: bottombar(),
     );
   }
 
@@ -127,7 +62,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Row(
       children: [
         CircleAvatar(
-          radius: 24,
+          radius: 22.r,
           child: GestureDetector(
             onTap: () => Navigator.push(
                 context,
@@ -140,70 +75,71 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           // backgroundImage: AssetImage("assets/profile.png"),
         ),
-        const Gap(14),
-        const Column(
+        SizedBox(height: 14.h),
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               'Welcome',
               style: TextStyle(
-                fontSize: 14,
+                fontSize: 14.sp,
                 fontWeight: FontWeight.w500,
-                color: Color(0xff98A2B3),
+                color: const Color(0xff98A2B3),
               ),
             ),
             Text(
               'Jeet',
               style: TextStyle(
-                fontSize: 22,
+                fontSize: 22.sp,
                 fontWeight: FontWeight.w600,
-                color: Color(0xff344054),
+                color: const Color(0xff344054),
               ),
             ),
           ],
         ),
         const Spacer(),
         CircleAvatar(
-          radius: 21,
+          radius: 21.r,
           backgroundColor: const Color(0xffF2F4F7),
           child: Image.asset(
             'assets/notification.png',
-            height: 20,
+            height: 20.h,
           ),
         ),
       ],
-    ).marginSymmetric(horizontal: 20.0);
+    ).marginSymmetric(horizontal: 18.0.h);
   }
 
   Widget location() {
-    return const Row(
+    return Row(
       children: [
         Icon(
           CupertinoIcons.location_solid,
           color: Color(0xffD0D5DD),
-          size: 14,
+          size: 14.h,
         ),
-        Gap(6.0),
+        SizedBox(height: 6.0.h),
         Text(
           'Surat, Gujarat',
           style: TextStyle(
-            fontSize: 14,
+            fontSize: 14.sp,
             fontWeight: FontWeight.bold,
-            color: Color(0xffD0D5DD),
+            color: const Color(0xffD0D5DD),
           ),
         ),
       ],
-    ).marginSymmetric(horizontal: 20.0);
+    ).marginSymmetric(horizontal: 20.0.h);
   }
 
   Widget searchbar() {
     return Container(
-      width: Get.width,
-      height: 40.0,
-      margin: const EdgeInsets.symmetric(horizontal: 16.0),
-      padding: const EdgeInsets.symmetric(horizontal: 14.0),
+      alignment: Alignment.center,
+      width: Get.width.w,
+      height: 40.0.h,
+      margin: EdgeInsets.symmetric(horizontal: 16.0.h),
+      padding: EdgeInsets.symmetric(horizontal: 14.0.h),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(30),
+        borderRadius: BorderRadius.circular(30.r),
         color: const Color(0xffF2F4F7),
       ),
       child: TextField(
@@ -211,10 +147,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         controller: t1,
         decoration: InputDecoration(
             suffixIcon: Image.asset("assets/filter.png"),
-            suffixIconConstraints: const BoxConstraints(maxHeight: 20.0),
+            suffixIconConstraints: BoxConstraints(maxHeight: 20.0.w),
             hintTextDirection: TextDirection.ltr,
-            prefixIcon: Image.asset("assets/search.png", height: 35, width: 33, alignment: Alignment.topLeft),
-            prefixIconConstraints: const BoxConstraints(maxHeight: 24.0),
+            prefixIcon: Image.asset("assets/search.png", height: 35.h, width: 33.w, alignment: Alignment.topLeft),
+            prefixIconConstraints: BoxConstraints(maxHeight: 24.0.h),
             border: InputBorder.none,
             fillColor: const Color(0xffF2F4F7),
             filled: true,
@@ -229,32 +165,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Text(
+        Text(
           "Category",
           style: TextStyle(
-            fontSize: 21,
+            fontSize: 21.sp,
             fontWeight: FontWeight.w600,
           ),
         ),
-        const Gap(15),
+        SizedBox(height: 15.h),
         SizedBox(
-          height: 42,
+          height: 42.h,
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
               _categories(index: 0, name: 'All'),
-              const Gap(10),
+              SizedBox(width: 10.w),
               _categories(index: 1, name: 'Indoor'),
-              const Gap(10),
+              SizedBox(width: 10.w),
               _categories(index: 2, name: 'Outdoor'),
-              const Gap(10),
+              SizedBox(width: 10.w),
               _categories(index: 3, name: 'Cactus'),
-              const Gap(10),
+              SizedBox(width: 10.w),
             ],
           ),
         ),
       ],
-    ).marginSymmetric(horizontal: 20.0);
+    ).marginSymmetric(horizontal: 20.0.h);
   }
 
   Widget cardView(BuildContext context) {
@@ -273,20 +209,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
         () => isSelected = index,
       ),
       child: Container(
-        height: 40,
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        height: 40.h,
+        padding: EdgeInsets.symmetric(horizontal: 20.0.h),
         decoration: BoxDecoration(
-          border: Border.all(color: const Color(0xffD0D5DD), width: 1.5),
-          borderRadius: BorderRadius.circular(29),
+          border: Border.all(
+            color: const Color(0xffD0D5DD),
+            width: 1.5.w,
+          ),
+          borderRadius: BorderRadius.circular(29.r),
           color: isSelected == index ? const Color(0xff475E3E) : const Color(0xffFCFCFD),
         ),
         child: Center(
           child: Text(
             name,
             style: TextStyle(
-                color: isSelected == index ? const Color(0xffFCFCFD) : const Color(0xffD0D5DD),
-                fontSize: 18,
-                fontWeight: isSelected == index ? FontWeight.bold : FontWeight.w600),
+              color: isSelected == index ? const Color(0xffFCFCFD) : const Color(0xffD0D5DD),
+              fontSize: 18.sp,
+              fontWeight: isSelected == index ? FontWeight.bold : FontWeight.w600,
+            ),
           ),
         ),
       ),
@@ -295,10 +235,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   _buildAllProduct() {
     return GridView.builder(
-      padding: const EdgeInsets.all(20),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      padding: EdgeInsets.all(20.h),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: (100 / 160),
+        childAspectRatio: (100.w / 160.h),
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
       ),
@@ -322,10 +262,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   _buildallindoorProduct() {
     return GridView.builder(
-      padding: const EdgeInsets.all(20),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      padding: EdgeInsets.all(20.h),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: (100 / 160),
+        childAspectRatio: (100.w / 160.h),
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
       ),
@@ -349,10 +289,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
   _buildoutdoorProduct() {
     return GridView.builder(
-      padding: const EdgeInsets.all(20),
-      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+      padding: EdgeInsets.all(20.h),
+      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 2,
-        childAspectRatio: (100 / 160),
+        childAspectRatio: (100.w / 160.h),
         crossAxisSpacing: 12,
         mainAxisSpacing: 12,
       ),
@@ -371,6 +311,71 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         );
       },
+    );
+  }
+
+  Widget bottombar() {
+    return BottomNavigationBar(
+      type: BottomNavigationBarType.fixed, // To allow more than 3 items
+      currentIndex: selectedBottomIocnIndex,
+      onTap: _onItemTapped,
+      items: [
+        BottomNavigationBarItem(
+          icon: CircleAvatar(
+            backgroundColor: selectedBottomIocnIndex == 0 ? const Color(0xffD0D5DD) : Colors.transparent,
+            child: IconButton(
+              onPressed: () {
+                _onItemTapped(0);
+              },
+              icon: const Icon(
+                Icons.home,
+                color: Color(0xff475E3E),
+                size: 26,
+              ),
+            ),
+          ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: IconButton(
+            onPressed: () {
+              _onItemTapped(1);
+            },
+            icon: Icon(
+              Icons.favorite,
+              color: selectedBottomIocnIndex == 1 ? Colors.white : const Color(0xffD0D5DD),
+              size: 26,
+            ),
+          ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: IconButton(
+            onPressed: () {
+              _onItemTapped(2);
+            },
+            icon: Icon(
+              Icons.shopping_cart,
+              color: selectedBottomIocnIndex == 2 ? Colors.white : const Color(0xffD0D5DD),
+              size: 26,
+            ),
+          ),
+          label: '',
+        ),
+        BottomNavigationBarItem(
+          icon: IconButton(
+            onPressed: () {
+              _onItemTapped(3);
+            },
+            icon: Icon(
+              Icons.person,
+              color: selectedBottomIocnIndex == 3 ? Colors.white : const Color(0xffD0D5DD),
+              size: 26,
+            ),
+          ),
+          label: '',
+        ),
+      ],
     );
   }
 }
