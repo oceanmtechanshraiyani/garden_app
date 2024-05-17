@@ -178,6 +178,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: ListView(
             scrollDirection: Axis.horizontal,
             children: [
+              SizedBox(width: 10.w),
               _categories(index: 0, name: 'All'),
               SizedBox(width: 10.w),
               _categories(index: 1, name: 'Indoor'),
