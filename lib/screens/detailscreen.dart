@@ -62,9 +62,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     widget.product.image,
                     height: 516,
                     width: MediaQuery.of(context).size.width,
-
                     fit: BoxFit.fill,
-
                   ),
                 ),
               ],
@@ -216,7 +214,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      widget.product.description,
+                                      "${widget.product.description} , ${widget.product.description}",
                                       style: const TextStyle(
                                         fontSize: 16,
                                         color: Color(0xff98A2B3),
