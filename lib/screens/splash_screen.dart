@@ -18,7 +18,7 @@ class SplashScreen extends StatelessWidget {
           title(),
           SizedBox(height: 14.h),
           mybutton(),
-          SizedBox(height: 5.h)
+          // SizedBox(height: 5.h)
         ],
       ),
     );
@@ -28,12 +28,12 @@ class SplashScreen extends StatelessWidget {
     return ShapeOfView(
       shape: ArcShape(
         direction: ArcDirection.Outside,
-        height: 40,
+        height: 40.h,
         position: ArcPosition.Bottom,
       ),
       elevation: 0,
       child: Container(
-        height: Get.height / 1.4,
+        height: Get.height / 1.4.h,
         width: Get.width,
         decoration: const BoxDecoration(color: Color(0xffF0F4EF), boxShadow: [
           BoxShadow(color: Colors.black, blurRadius: 00, offset: Offset.infinite),
