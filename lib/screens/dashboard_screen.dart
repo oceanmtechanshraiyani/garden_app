@@ -47,14 +47,14 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       ),
-      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.r)),
-        onPressed: () {},
-        backgroundColor: const Color(0xff475E3E),
-        child: const Icon(CupertinoIcons.qrcode_viewfinder, color: Colors.white),
-      ),
-      bottomNavigationBar: bottombar(),
+      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      // floatingActionButton: FloatingActionButton(
+      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.r)),
+      //   onPressed: () {},
+      //   backgroundColor: const Color(0xff475E3E),
+      //   child: const Icon(CupertinoIcons.qrcode_viewfinder, color: Colors.white),
+      // ),
+      // bottomNavigationBar: bottombar(),
     );
   }
 

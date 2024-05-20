@@ -11,7 +11,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back)),
+        title: const Text('Profile'),
+      ),
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,

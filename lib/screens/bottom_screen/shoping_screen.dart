@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class ShopingScreen extends StatefulWidget {
   const ShopingScreen({super.key});
@@ -10,6 +10,10 @@ class ShopingScreen extends StatefulWidget {
 class _ShopingScreenState extends State<ShopingScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Shoping Screen'),
+      ),
+    );
   }
 }

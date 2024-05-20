@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:garden_app/bottom_bar_screen.dart';
-import 'package:garden_app/screens/dashboard_screen.dart';
 import 'package:get/route_manager.dart';
 import 'package:gap/gap.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';

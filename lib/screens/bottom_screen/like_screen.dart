@@ -11,7 +11,9 @@ class _LikeScreenState extends State<LikeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title:  const Text('Like Screen'),
+      ),
       body: Container(),
     );
   }

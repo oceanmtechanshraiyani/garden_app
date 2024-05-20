@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 class QrScreen extends StatefulWidget {
   const QrScreen({super.key});
@@ -10,6 +10,11 @@ class QrScreen extends StatefulWidget {
 class _QrScreenState extends State<QrScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
+    return Scaffold(
+      appBar: AppBar(
+        
+        title: const Text("QR Screen"),
+      ),
+    );
   }
 }

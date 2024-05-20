@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/Qr_Screen.dart';
 import 'package:garden_app/screens/bottom_screen/like_screen.dart';
-import 'package:garden_app/screens/bottom_screen/profile_screen.dart';
 import 'package:garden_app/screens/bottom_screen/shoping_screen.dart';
 import 'package:garden_app/screens/dashboard_screen.dart';
+import 'package:garden_app/widgets/profile_screen.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({super.key});
