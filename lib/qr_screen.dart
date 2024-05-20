@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:qr_code_scanner/qr_code_scanner.dart';
@@ -74,7 +73,6 @@ class _QrScreenState extends State<QrScreen> {
                         ),
                       ),
                     ),
-
                   ],
                 )
                     // (result != null)
