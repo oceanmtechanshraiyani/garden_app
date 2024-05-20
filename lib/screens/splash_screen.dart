@@ -33,7 +33,7 @@ class SplashScreen extends StatelessWidget {
       ),
       elevation: 0,
       child: Container(
-        height: Get.height / 1.4.h,
+        height: Get.height / 1.4,
         width: Get.width,
         decoration: const BoxDecoration(color: Color(0xffF0F4EF), boxShadow: [
           BoxShadow(color: Colors.black, blurRadius: 00, offset: Offset.infinite),

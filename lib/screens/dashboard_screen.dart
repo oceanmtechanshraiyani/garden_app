@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/model/my_product.dart';
 import 'package:garden_app/screens/detailscreen.dart';
+import 'package:garden_app/screens/notification_screen.dart';
 import 'package:garden_app/widgets/product_card.dart';
 import 'package:garden_app/widgets/profile_screen.dart';
 import 'package:get/get.dart';
@@ -90,12 +91,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
         const Spacer(),
-        CircleAvatar(
-          radius: 21.r,
-          backgroundColor: const Color(0xffF2F4F7),
-          child: Image.asset(
-            'assets/notification.png',
-            height: 20.h,
+        GestureDetector(
+          onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const NotificationScreen(),
+              )),
+          child: CircleAvatar(
+            radius: 21.r,
+            backgroundColor: const Color(0xffF2F4F7),
+            child: Image.asset(
+              'assets/notification.png',
+              height: 20.h,
+            ),
           ),
         ),
       ],
