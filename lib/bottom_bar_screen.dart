@@ -127,17 +127,12 @@ class CustomBottomNavBar extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Icon(
-            icon,
-            color: currentIndex == index ? const Color(0xff475E3E) : const Color(0xffD0D5DD),
-            size: 28.h,
-          ),
-          Container(
-            height: 4.h,
-            width: 4.w,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              color: currentIndex == index ? const Color(0xff475E3E) : Colors.transparent,
+          CircleAvatar(
+            backgroundColor: currentIndex == 0 ? const Color(0xffD0D5DD) : const Color(0xffD0D5DD),
+            child: Icon(
+              icon,
+              color: currentIndex == index ? const Color(0xff475E3E) : const Color(0xff475E3E),
+              size: 28.h,
             ),
           ),
         ],

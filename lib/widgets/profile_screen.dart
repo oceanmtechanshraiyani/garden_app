@@ -1,4 +1,7 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:get/get.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -18,9 +21,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: SingleChildScrollView(
         child: Container(
           alignment: Alignment.center,
-          child: const Column(
+          child: Column(
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 120,
                 width: 220,
                 child: Image(
@@ -28,15 +31,34 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVvMOz18aK4pyS5Vvl-C43QuHflXYlUx8p3TgIWSvilCf8KW4-itbJKcKBqsFBC1RkUx8&usqp=CAU"),
                 ),
               ),
-              SizedBox(height: 10),
+              const SizedBox(height: 10),
               Text(
                 'Jeet',
                 style: TextStyle(
-                  fontSize: 22,
+                  fontSize: 22.sp,
                   fontWeight: FontWeight.w600,
-                  color: Color(0xff344054),
+                  color: const Color(0xff344054),
                 ),
               ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    CupertinoIcons.location_solid,
+                    color: const Color(0xffD0D5DD),
+                    size: 14.h,
+                  ),
+                  SizedBox(width: 6.0.w),
+                  Text(
+                    'Surat, Gujarat',
+                    style: TextStyle(
+                      fontSize: 18.sp,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xffD0D5DD),
+                    ),
+                  ),
+                ],
+              ).marginSymmetric(horizontal: 20.0.h),
             ],
           ),
         ),

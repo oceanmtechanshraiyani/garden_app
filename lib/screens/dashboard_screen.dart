@@ -110,7 +110,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           color: const Color(0xffD0D5DD),
           size: 14.h,
         ),
-        SizedBox(height: 6.0.h),
+        SizedBox(width: 6.0.w),
         Text(
           'Surat, Gujarat',
           style: TextStyle(
