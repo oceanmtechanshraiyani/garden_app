@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:garden_app/bottom_bar_screen.dart';
 import 'package:garden_app/screens/dashboard_screen.dart';
 import 'package:get/route_manager.dart';
 import 'package:gap/gap.dart';
@@ -56,7 +57,7 @@ class SplashScreen extends StatelessWidget {
   Widget mybutton() {
     return GestureDetector(
       onTap: () {
-        Get.to(const DashboardScreen());
+        Get.to(const BottomNavBarScreen());
       },
       child: Container(
         height: 52,
