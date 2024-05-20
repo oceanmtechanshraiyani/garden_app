@@ -44,6 +44,8 @@ dependencies:
   # svg_flutter: any
   flutter_svg: ^2.0.10+1
   flutter_screenutil: ^5.9.1
+  qr_code_scanner: ^1.0.1
+  url_launcher: ^6.2.6
 
 dev_dependencies:
   flutter_test:

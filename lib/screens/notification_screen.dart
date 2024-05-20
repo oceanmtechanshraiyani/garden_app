@@ -1,7 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/route_manager.dart';
 
 class NotificationScreen extends StatefulWidget {
   const NotificationScreen({super.key});
@@ -23,14 +22,13 @@ class _NotificationScreenState extends State<NotificationScreen> {
           icon: const Icon(CupertinoIcons.arrow_left),
         ),
         elevation: 0,
+        centerTitle: true,
         scrolledUnderElevation: 0,
         foregroundColor: Colors.black,
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        title: const Center(
-          child: Text(
-            "Notifications",
-            textAlign: TextAlign.center,
-          ),
+        title: Text(
+          "Notifications",
+          textAlign: TextAlign.center,
         ),
         actions: [
           IconButton(

@@ -20,11 +20,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int isSelected = 0;
   int selectedBottomIocnIndex = 0;
 
-  void _onItemTapped(int index) {
-    setState(() {
-      selectedBottomIocnIndex = index;
-    });
-  }
+  // void _onItemTapped(int index) {
+  //   setState(() {
+  //     selectedBottomIocnIndex = index;
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
