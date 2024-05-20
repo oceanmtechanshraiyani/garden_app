@@ -60,7 +60,7 @@ class _QrScreenState extends State<QrScreen> {
                 child: Center(
                     child: Column(
                   children: [
-                    Expanded(
+                    const Expanded(
                       child: Text("Scan Code"),
                     ),
                     Expanded(
@@ -74,11 +74,7 @@ class _QrScreenState extends State<QrScreen> {
                       ),
                     ),
                   ],
-                )
-                    // (result != null)
-                    //     ? Text('Barcode Type: ${describeEnum(result!.format)}   Data: ${result!.code}')
-                    //     : Text('Scan a code'),
-                    ),
+                )),
               )
             ],
           ),
