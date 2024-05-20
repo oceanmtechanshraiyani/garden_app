@@ -130,6 +130,7 @@ class CustomBottomNavBar extends StatelessWidget {
           Icon(
             icon,
             color: currentIndex == index ? const Color(0xff475E3E) : const Color(0xffD0D5DD),
+            size: 28.h,
           ),
           Container(
             height: 4.h,

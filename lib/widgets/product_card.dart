@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:gap/gap.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/model/models.dart';
 
 class ProductCard extends StatefulWidget {
@@ -19,21 +19,21 @@ class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width / 2,
+      width: MediaQuery.of(context).size.width / 2.w,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(20),
+        borderRadius: BorderRadius.circular(20.r),
         color: const Color(0xffF0F4EF),
       ),
       child: Column(
         children: [
-          const Row(
+          Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               CircleAvatar(
-                backgroundColor: Color(0xffB5C9AD),
-                minRadius: 18,
-                child: Icon(
+                backgroundColor: const Color(0xffB5C9AD),
+                minRadius: 18.r,
+                child: const Icon(
                   CupertinoIcons.heart_fill,
                   color: Colors.red,
                 ),
@@ -43,10 +43,9 @@ class _ProductCardState extends State<ProductCard> {
           SizedBox(
             height: MediaQuery.of(context).size.height / 5.5,
             width: MediaQuery.of(context).size.width,
-            // width: 140,
             child: Image.asset(
               widget.product.image,
-              // height: 140,
+              height: 140.h,
               fit: BoxFit.fill,
             ),
           ),
@@ -57,31 +56,31 @@ class _ProductCardState extends State<ProductCard> {
                 padding: const EdgeInsets.only(top: 9.0),
                 child: Text(
                   widget.product.name,
-                  style: const TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
                 ),
               ),
             ],
           ),
-          const Gap(10),
+          SizedBox(height: 10.h),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
+                padding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 4.h),
                 decoration: BoxDecoration(
                   color: Colors.white,
-                  borderRadius: BorderRadius.circular(20),
+                  borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Center(
                     child: Text(
                   '\$' '${widget.product.price}',
-                  style: const TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.black),
+                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black),
                 )),
               ),
-              const CircleAvatar(
-                backgroundColor: Color(0xffB5C9AD),
-                radius: 12,
-                child: Icon(CupertinoIcons.add, color: Colors.white),
+              CircleAvatar(
+                backgroundColor: const Color(0xffB5C9AD),
+                radius: 12.r,
+                child: const Icon(CupertinoIcons.add, color: Colors.white),
               ),
             ],
           ),
