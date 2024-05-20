@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:gap/gap.dart';
 import 'package:garden_app/model/models.dart';
 
@@ -37,7 +38,7 @@ class _DetailScreenState extends State<DetailScreen> {
           scrolledUnderElevation: 0,
           backgroundColor: Colors.transparent,
           leading: Padding(
-            padding: const EdgeInsets.only(top: 18.0, left: 10.0),
+            padding: EdgeInsets.only(top: 18.0.h, left: 10.0.w),
             child: GestureDetector(
                 onTap: () => Navigator.pop(context),
                 child: Image.asset(
@@ -46,7 +47,7 @@ class _DetailScreenState extends State<DetailScreen> {
           ),
           actions: [
             Padding(
-              padding: const EdgeInsets.only(top: 18.0, right: 10),
+              padding: EdgeInsets.only(top: 18.0.h, right: 10.w),
               child: Image.asset('assets/like.png'),
             )
           ],
@@ -60,7 +61,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   color: const Color(0xffF0F4EF),
                   child: Image.asset(
                     widget.product.image,
-                    height: 516,
+                    height: MediaQuery.of(context).size.height / 1.7.h,
                     width: MediaQuery.of(context).size.width,
                     fit: BoxFit.fill,
                   ),
@@ -71,14 +72,14 @@ class _DetailScreenState extends State<DetailScreen> {
               child: Column(
                 children: [
                   Container(
-                    height: MediaQuery.of(context).size.height / 1.7,
-                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height / 1.7.h,
+                    width: MediaQuery.of(context).size.width.w,
                     color: Colors.transparent,
                   ),
                   Container(
                     decoration: BoxDecoration(
                       color: const Color(0xffF0F4EF),
-                      borderRadius: BorderRadius.circular(30),
+                      borderRadius: BorderRadius.circular(30.r),
                       boxShadow: const [
                         BoxShadow(
                           color: Color(0xffB5C9AD),
@@ -93,10 +94,10 @@ class _DetailScreenState extends State<DetailScreen> {
                       color: Colors.white,
                       elevation: 0,
                       shadowColor: Colors.black,
-                      shape: const RoundedRectangleBorder(
+                      shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.only(
-                          topLeft: Radius.circular(30),
-                          topRight: Radius.circular(30),
+                          topLeft: Radius.circular(30.r),
+                          topRight: Radius.circular(30.r),
                         ),
                       ),
                       child: Padding(
@@ -109,7 +110,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                 children: [
                                   Text(
                                     widget.product.name,
-                                    style: const TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -120,8 +121,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                 children: [
                                   Text(
                                     '\$' '${widget.product.price}',
-                                    style: const TextStyle(
-                                        fontSize: 20, fontWeight: FontWeight.w500, color: Color(0xff475E3E)),
+                                    style: TextStyle(
+                                        fontSize: 20.sp, fontWeight: FontWeight.w500, color: const Color(0xff475E3E)),
                                   ),
                                   const Spacer(),
                                   Padding(
@@ -129,12 +130,12 @@ class _DetailScreenState extends State<DetailScreen> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                         color: const Color(0xffF0F4EF),
-                                        borderRadius: BorderRadius.circular(20),
-                                        boxShadow: const [
+                                        borderRadius: BorderRadius.circular(20.r),
+                                        boxShadow: [
                                           BoxShadow(
-                                            color: Color(0xff000000),
+                                            color: const Color(0xff000000),
 
-                                            blurRadius: 0.5,
+                                            blurRadius: 0.5.r,
                                             offset: Offset.infinite,
                                             // spreadRadius: 1,
                                           ),
@@ -152,16 +153,12 @@ class _DetailScreenState extends State<DetailScreen> {
                                               onPressed: decrementnumber,
                                             ),
                                           ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
+                                          SizedBox(width: 10.w),
                                           Text(
                                             '$number',
-                                            style: const TextStyle(fontSize: 20),
+                                            style: TextStyle(fontSize: 20.sp),
                                           ),
-                                          const SizedBox(
-                                            width: 10,
-                                          ),
+                                          SizedBox(width: 10.w),
                                           CircleAvatar(
                                             backgroundColor: const Color(0xffB5C9AD),
                                             child: IconButton(
@@ -182,27 +179,27 @@ class _DetailScreenState extends State<DetailScreen> {
                                 children: [
                                   Image.asset(
                                     'assets/starrate.png',
-                                    height: 24,
-                                    width: 24,
+                                    height: 24.h,
+                                    width: 24.w,
                                   ),
                                   const Gap(5),
-                                  const Text(
+                                  Text(
                                     "4.9",
                                     style: TextStyle(
-                                      fontSize: 16,
+                                      fontSize: 16.sp,
                                     ),
                                   )
                                 ],
                               ),
                             ),
                             const Gap(8),
-                            const Padding(
-                              padding: EdgeInsets.only(left: 8.0),
+                            Padding(
+                              padding: const EdgeInsets.only(left: 8.0),
                               child: Row(
                                 children: [
                                   Text(
                                     'About Plant',
-                                    style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                                    style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
                                   ),
                                 ],
                               ),
@@ -215,9 +212,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                   Expanded(
                                     child: Text(
                                       "${widget.product.description} , ${widget.product.description}",
-                                      style: const TextStyle(
-                                        fontSize: 16,
-                                        color: Color(0xff98A2B3),
+                                      style: TextStyle(
+                                        fontSize: 16.sp,
+                                        color: const Color(0xff98A2B3),
                                         fontWeight: FontWeight.w500,
                                       ),
                                     ),
@@ -246,11 +243,15 @@ class _DetailScreenState extends State<DetailScreen> {
                 width: 343,
                 child: TextButton(
                   onPressed: () {},
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
-                      const Color(0xff475E3E),
-                    ),
-                  ),
+                  style: const ButtonStyle(
+                      backgroundColor: WidgetStatePropertyAll(
+                    Color(0xff475E3E),
+                  )),
+                  //  ButtonStyle(
+                  //   backgroundColor: MaterialStateProperty.all(
+                  //     const Color(0xff475E3E),
+                  //   ),
+                  // ),
                   child: const Text(
                     "Buy Now!",
                     style: TextStyle(color: Color(0xffF0F4EF), fontSize: 22),

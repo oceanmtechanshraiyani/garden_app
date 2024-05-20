@@ -75,7 +75,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           // backgroundImage: AssetImage("assets/profile.png"),
         ),
-        SizedBox(height: 14.h),
+        SizedBox(width: 12.w),
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -147,7 +147,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         controller: t1,
         decoration: InputDecoration(
             suffixIcon: Image.asset("assets/filter.png"),
-            suffixIconConstraints: BoxConstraints(maxHeight: 20.0.w),
+            suffixIconConstraints: BoxConstraints(maxHeight: 18.0.w),
             hintTextDirection: TextDirection.ltr,
             prefixIcon: Image.asset("assets/search.png", height: 35.h, width: 33.w, alignment: Alignment.topLeft),
             prefixIconConstraints: BoxConstraints(maxHeight: 24.0.h),

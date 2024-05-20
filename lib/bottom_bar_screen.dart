@@ -38,6 +38,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       resizeToAvoidBottomInset: false,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       floatingActionButton: FloatingActionButton(
@@ -80,14 +81,16 @@ class CustomBottomNavBar extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(30.w),
-          topRight: Radius.circular(30.w),
+          topLeft: Radius.circular(35.w),
+          topRight: Radius.circular(35.w),
+          bottomLeft: Radius.circular(35.w),
+          bottomRight: Radius.circular(35.w),
         ),
         boxShadow: [
           BoxShadow(
-            color: Colors.black26,
-            blurRadius: 10.w,
-            spreadRadius: 1,
+            color: const Color(0xff717171),
+            blurRadius: 0.w,
+            spreadRadius: 0,
           ),
         ],
       ),
@@ -97,13 +100,15 @@ class CustomBottomNavBar extends StatelessWidget {
           topRight: Radius.circular(30.w),
         ),
         child: Container(
+          height: 68.h,
+          width: 375.w,
           padding: EdgeInsets.symmetric(vertical: 10.h),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildNavItem(Icons.home, 0),
               _buildNavItem(Icons.favorite, 1),
-              SizedBox(width: 50.w),
+              SizedBox(width: 10.w),
               _buildNavItem(Icons.shopping_cart, 2),
               _buildNavItem(Icons.person, 3),
             ],
