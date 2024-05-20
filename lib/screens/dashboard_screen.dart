@@ -47,14 +47,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ],
         ),
       ),
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
-      // floatingActionButton: FloatingActionButton(
-      //   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(100.r)),
-      //   onPressed: () {},
-      //   backgroundColor: const Color(0xff475E3E),
-      //   child: const Icon(CupertinoIcons.qrcode_viewfinder, color: Colors.white),
-      // ),
-      // bottomNavigationBar: bottombar(),
     );
   }
 
@@ -65,15 +57,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
           radius: 22.r,
           child: GestureDetector(
             onTap: () => Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => const ProfileScreen(),
-                )),
+              context,
+              MaterialPageRoute(
+                builder: (context) => const ProfileScreen(),
+              ),
+            ),
             child: const Image(
               image: AssetImage("assets/profile.png"),
             ),
           ),
-          // backgroundImage: AssetImage("assets/profile.png"),
         ),
         SizedBox(width: 12.w),
         Column(
@@ -115,7 +107,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       children: [
         Icon(
           CupertinoIcons.location_solid,
-          color: Color(0xffD0D5DD),
+          color: const Color(0xffD0D5DD),
           size: 14.h,
         ),
         SizedBox(height: 6.0.h),
@@ -146,17 +138,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
         cursorColor: const Color(0xff475E3E),
         controller: t1,
         decoration: InputDecoration(
-            suffixIcon: Image.asset("assets/filter.png"),
-            suffixIconConstraints: BoxConstraints(maxHeight: 18.0.w),
-            hintTextDirection: TextDirection.ltr,
-            prefixIcon: Image.asset("assets/search.png", height: 35.h, width: 33.w, alignment: Alignment.topLeft),
-            prefixIconConstraints: BoxConstraints(maxHeight: 24.0.h),
-            border: InputBorder.none,
-            fillColor: const Color(0xffF2F4F7),
-            filled: true,
-            hintText: "Search Here",
-            isDense: true,
-            hintStyle: const TextStyle(fontSize: 14, color: Color(0xff98A2B3))),
+          suffixIcon: Image.asset("assets/filter.png"),
+          suffixIconConstraints: BoxConstraints(maxHeight: 18.0.w),
+          hintTextDirection: TextDirection.ltr,
+          prefixIcon: Image.asset(
+            "assets/search.png",
+            height: 35.h,
+            width: 33.w,
+            alignment: Alignment.topLeft,
+          ),
+          prefixIconConstraints: BoxConstraints(maxHeight: 24.0.h),
+          border: InputBorder.none,
+          fillColor: const Color(0xffF2F4F7),
+          filled: true,
+          hintText: "Search Here",
+          isDense: true,
+          hintStyle: const TextStyle(
+            fontSize: 14,
+            color: Color(0xff98A2B3),
+          ),
+        ),
       ),
     );
   }
@@ -204,7 +205,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  _categories({required int index, required String name}) {
+  Widget _categories({required int index, required String name}) {
     return GestureDetector(
       onTap: () => setState(
         () => isSelected = index,
@@ -234,7 +235,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  _buildAllProduct() {
+  Widget _buildAllProduct() {
     return GridView.builder(
       padding: EdgeInsets.all(20.h),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -249,10 +250,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         final allProducts = Myproducts.allProducts[index];
         return GestureDetector(
           onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailScreen(product: allProducts),
-              )),
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(product: allProducts),
+            ),
+          ),
           child: ProductCard(
             product: allProducts,
           ),
@@ -261,7 +263,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  _buildallindoorProduct() {
+  Widget _buildallindoorProduct() {
     return GridView.builder(
       padding: EdgeInsets.all(20.h),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -276,10 +278,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         final allindoorproduct = Myproducts.allindoorproduct[index];
         return GestureDetector(
           onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailScreen(product: allindoorproduct),
-              )),
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(product: allindoorproduct),
+            ),
+          ),
           child: ProductCard(
             product: allindoorproduct,
           ),
@@ -288,7 +291,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  _buildoutdoorProduct() {
+  Widget _buildoutdoorProduct() {
     return GridView.builder(
       padding: EdgeInsets.all(20.h),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -303,80 +306,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
         final alloutdoorProducts = Myproducts.alloutdoorProducts[index];
         return GestureDetector(
           onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailScreen(product: alloutdoorProducts),
-              )),
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(product: alloutdoorProducts),
+            ),
+          ),
           child: ProductCard(
             product: alloutdoorProducts,
           ),
         );
       },
-    );
-  }
-
-  Widget bottombar() {
-    return BottomNavigationBar(
-      type: BottomNavigationBarType.fixed, // To allow more than 3 items
-      currentIndex: selectedBottomIocnIndex,
-      onTap: _onItemTapped,
-      items: [
-        BottomNavigationBarItem(
-          icon: CircleAvatar(
-            backgroundColor: selectedBottomIocnIndex == 0 ? const Color(0xffD0D5DD) : Colors.transparent,
-            child: IconButton(
-              onPressed: () {
-                _onItemTapped(0);
-              },
-              icon: const Icon(
-                Icons.home,
-                color: Color(0xff475E3E),
-                size: 26,
-              ),
-            ),
-          ),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () {
-              _onItemTapped(1);
-            },
-            icon: Icon(
-              Icons.favorite,
-              color: selectedBottomIocnIndex == 1 ? Colors.white : const Color(0xffD0D5DD),
-              size: 26,
-            ),
-          ),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () {
-              _onItemTapped(2);
-            },
-            icon: Icon(
-              Icons.shopping_cart,
-              color: selectedBottomIocnIndex == 2 ? Colors.white : const Color(0xffD0D5DD),
-              size: 26,
-            ),
-          ),
-          label: '',
-        ),
-        BottomNavigationBarItem(
-          icon: IconButton(
-            onPressed: () {
-              _onItemTapped(3);
-            },
-            icon: Icon(
-              Icons.person,
-              color: selectedBottomIocnIndex == 3 ? Colors.white : const Color(0xffD0D5DD),
-              size: 26,
-            ),
-          ),
-          label: '',
-        ),
-      ],
     );
   }
 }

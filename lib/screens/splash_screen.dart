@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/bottom_bar_screen.dart';
 import 'package:get/route_manager.dart';
-import 'package:gap/gap.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 
 class SplashScreen extends StatelessWidget {
@@ -14,10 +14,11 @@ class SplashScreen extends StatelessWidget {
       body: Column(
         children: [
           splashImage(),
-          const Gap(20),
+          SizedBox(height: 10.h),
           title(),
-          const Gap(20),
+          SizedBox(height: 14.h),
           mybutton(),
+          SizedBox(height: 5.h)
         ],
       ),
     );
@@ -43,11 +44,11 @@ class SplashScreen extends StatelessWidget {
   }
 
   Widget title() {
-    return const Text(
+    return Text(
       "Create Your \n Own Garden!",
       textAlign: TextAlign.center,
       style: TextStyle(
-        fontSize: 35,
+        fontSize: 35.sp,
         fontWeight: FontWeight.w600,
       ),
     );
@@ -59,31 +60,31 @@ class SplashScreen extends StatelessWidget {
         Get.to(const BottomNavBarScreen());
       },
       child: Container(
-        height: 52,
-        padding: const EdgeInsets.symmetric(horizontal: 32.0),
+        height: 52.w,
+        padding: EdgeInsets.symmetric(horizontal: 32.0.h),
         decoration: BoxDecoration(
           color: const Color(0xff475E3E),
-          borderRadius: BorderRadius.circular(42),
+          borderRadius: BorderRadius.circular(42.r),
         ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           children: [
-            const Text(
+            Text(
               "Let’s Start",
-              style: TextStyle(fontSize: 18, color: Colors.white),
+              style: TextStyle(fontSize: 18.sp, color: Colors.white),
             ),
-            const Gap(6),
+            SizedBox(width: 10.w),
             Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 0.8),
+                border: Border.all(color: Colors.white, width: 0.8.w),
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 CupertinoIcons.chevron_forward,
                 color: Colors.white,
-                size: 14,
+                size: 14.h,
               ),
             )
           ],

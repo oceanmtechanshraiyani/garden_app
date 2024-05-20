@@ -70,7 +70,8 @@ class CustomBottomNavBar extends StatelessWidget {
   final int currentIndex;
   final ValueChanged<int> onItemTapped;
 
-  CustomBottomNavBar({
+  const CustomBottomNavBar({
+    super.key,
     required this.currentIndex,
     required this.onItemTapped,
   });
@@ -104,6 +105,7 @@ class CustomBottomNavBar extends StatelessWidget {
           width: 375.w,
           padding: EdgeInsets.symmetric(vertical: 10.h),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               _buildNavItem(Icons.home, 0),
