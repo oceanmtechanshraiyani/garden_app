@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:gap/gap.dart';
 import 'package:garden_app/model/models.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -175,7 +174,7 @@ class _DetailScreenState extends State<DetailScreen> {
                               ),
                             ),
                             Padding(
-                              padding: const EdgeInsets.only(left: 8.0),
+                              padding: const EdgeInsets.only(left: 6.0),
                               child: Row(
                                 children: [
                                   Image.asset(
@@ -183,7 +182,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                     height: 24.h,
                                     width: 24.w,
                                   ),
-                                  const Gap(5),
+                                  SizedBox(width: 5.h),
                                   Text(
                                     "4.9",
                                     style: TextStyle(
@@ -193,7 +192,9 @@ class _DetailScreenState extends State<DetailScreen> {
                                 ],
                               ),
                             ),
-                            const Gap(8),
+
+                            SizedBox(height: 8.h),
+
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Row(
@@ -205,7 +206,6 @@ class _DetailScreenState extends State<DetailScreen> {
                                 ],
                               ),
                             ),
-                            // const Gap(),
                             Padding(
                               padding: const EdgeInsets.all(8.0),
                               child: Row(

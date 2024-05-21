@@ -25,6 +25,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
   List<Product> display_grid1 = List.from(Myproducts.allindoorproduct);
   List<Product> display_grid2 = List.from(Myproducts.alloutdoorProducts);
   void updateGrid(String value) {
+    // print("=======================${display_grid}");
+    // print("=======================${display_grid.contains(value.toLowerCase())}");
+    // if (value.isEmpty) {}
     display_grid = Myproducts.allProducts
         .where(
           (element) => element.name.toLowerCase().contains(value.toLowerCase()),
@@ -41,6 +44,42 @@ class _DashboardScreenState extends State<DashboardScreen> {
         )
         .toList();
   }
+
+  // void updateGrid1(String value) {
+  //   display_grid = Myproducts.allProducts
+  //       .where(
+  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+  //       )
+  //       .toList();
+  //   display_grid1 = Myproducts.allindoorproduct
+  //       .where(
+  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+  //       )
+  //       .toList();
+  //   display_grid2 = Myproducts.alloutdoorProducts
+  //       .where(
+  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+  //       )
+  //       .toList();
+  // }
+
+  // void updateGrid2(String value) {
+  //   display_grid = Myproducts.allProducts
+  //       .where(
+  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+  //       )
+  //       .toList();
+  //   display_grid1 = Myproducts.allindoorproduct
+  //       .where(
+  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+  //       )
+  //       .toList();
+  //   display_grid2 = Myproducts.alloutdoorProducts
+  //       .where(
+  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+  //       )
+  //       .toList();
+  // }
 
   // void _onItemTapped(int index) {
   //   setState(() {
@@ -167,6 +206,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       child: TextField(
         onChanged: (value) => updateGrid(value),
+        // {
+
+        // print(value);
+        // isSelected == 0
+        //     ? updateGrid(value)
+        //     : isSelected == 1
+        //         ? updateGrid(value)
+        //         : updateGrid(value);
+        // },
         onTap: () => FocusScope.of(context).unfocus,
         cursorColor: const Color(0xff475E3E),
         controller: t1,
