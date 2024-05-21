@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:garden_app/model/models.dart';
 import 'package:garden_app/model/my_product.dart';
 import 'package:garden_app/screens/detailscreen.dart';
 import 'package:garden_app/screens/notification_screen.dart';
@@ -18,7 +19,28 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   TextEditingController t1 = TextEditingController();
   int isSelected = 0;
-  int selectedBottomIocnIndex = 0;
+  // int selectedBottomIocnIndex = 0;
+
+  List<Product> display_grid = List.from(Myproducts.allProducts);
+  List<Product> display_grid1 = List.from(Myproducts.allindoorproduct);
+  List<Product> display_grid2 = List.from(Myproducts.alloutdoorProducts);
+  void updateGrid(String value) {
+    display_grid = Myproducts.allProducts
+        .where(
+          (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+        )
+        .toList();
+    display_grid1 = Myproducts.allindoorproduct
+        .where(
+          (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+        )
+        .toList();
+    display_grid2 = Myproducts.alloutdoorProducts
+        .where(
+          (element) => element.name.toLowerCase().contains(value.toLowerCase()),
+        )
+        .toList();
+  }
 
   // void _onItemTapped(int index) {
   //   setState(() {
@@ -40,6 +62,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             location(),
             SizedBox(height: 20.h),
             searchbar(),
+            // SearchScreen(),
             SizedBox(height: 20.h),
             categories(),
             SizedBox(height: 10.h),
@@ -143,6 +166,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         color: const Color.fromRGBO(242, 244, 247, 1),
       ),
       child: TextField(
+        onChanged: (value) => updateGrid(value),
         onTap: () => FocusScope.of(context).unfocus,
         cursorColor: const Color(0xff475E3E),
         controller: t1,
@@ -257,7 +281,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         mainAxisSpacing: 12,
       ),
       scrollDirection: Axis.vertical,
-      itemCount: Myproducts.allProducts.length,
+      itemCount: display_grid.length,
       itemBuilder: (context, index) {
         final allProducts = Myproducts.allProducts[index];
         return GestureDetector(
@@ -285,7 +309,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         mainAxisSpacing: 12,
       ),
       scrollDirection: Axis.vertical,
-      itemCount: Myproducts.allindoorproduct.length,
+      itemCount: display_grid1.length,
       itemBuilder: (context, index) {
         final allindoorproduct = Myproducts.allindoorproduct[index];
         return GestureDetector(
@@ -313,7 +337,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         mainAxisSpacing: 12,
       ),
       scrollDirection: Axis.vertical,
-      itemCount: Myproducts.alloutdoorProducts.length,
+      itemCount: display_grid2.length,
       itemBuilder: (context, index) {
         final alloutdoorProducts = Myproducts.alloutdoorProducts[index];
         return GestureDetector(

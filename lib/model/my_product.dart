@@ -188,7 +188,7 @@ class Myproducts {
     ),
     Product(
       id: 1,
-      name: 'Outdoor Plant',
+      name: 'Jade Plant',
       category: 'All',
       image: 'assets/outdoor/2.png',
       description:

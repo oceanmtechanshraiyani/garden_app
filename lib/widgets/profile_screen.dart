@@ -18,49 +18,49 @@ class _ProfileScreenState extends State<ProfileScreen> {
         leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back)),
         title: const Text('Profile'),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          alignment: Alignment.center,
-          child: Column(
-            children: [
-              const SizedBox(
-                height: 120,
-                width: 220,
-                child: Image(
-                  image: NetworkImage(
-                      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVvMOz18aK4pyS5Vvl-C43QuHflXYlUx8p3TgIWSvilCf8KW4-itbJKcKBqsFBC1RkUx8&usqp=CAU"),
-                ),
+      body: Container(
+        alignment: Alignment.center,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const SizedBox(
+              height: 120,
+              width: 220,
+              child: Image(
+                image: NetworkImage(
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTVvMOz18aK4pyS5Vvl-C43QuHflXYlUx8p3TgIWSvilCf8KW4-itbJKcKBqsFBC1RkUx8&usqp=CAU"),
               ),
-              const SizedBox(height: 10),
-              Text(
-                'Jeet',
-                style: TextStyle(
-                  fontSize: 22.sp,
-                  fontWeight: FontWeight.w600,
-                  color: const Color(0xff344054),
-                ),
+            ),
+            const SizedBox(height: 10),
+            Text(
+              'Jeet',
+              style: TextStyle(
+                fontSize: 22.sp,
+                fontWeight: FontWeight.w600,
+                color: const Color(0xff344054),
               ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Icon(
-                    CupertinoIcons.location_solid,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Icon(
+                  CupertinoIcons.location_solid,
+                  color: const Color(0xffD0D5DD),
+                  size: 14.h,
+                ),
+                SizedBox(width: 6.0.w),
+                Text(
+                  'Surat, Gujarat',
+                  style: TextStyle(
+                    fontSize: 18.sp,
+                    fontWeight: FontWeight.bold,
                     color: const Color(0xffD0D5DD),
-                    size: 14.h,
                   ),
-                  SizedBox(width: 6.0.w),
-                  Text(
-                    'Surat, Gujarat',
-                    style: TextStyle(
-                      fontSize: 18.sp,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xffD0D5DD),
-                    ),
-                  ),
-                ],
-              ).marginSymmetric(horizontal: 20.0.h),
-            ],
-          ),
+                ),
+              ],
+            ).marginSymmetric(horizontal: 20.0.h),
+          ],
         ),
       ),
     );
