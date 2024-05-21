@@ -140,11 +140,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
       padding: EdgeInsets.symmetric(horizontal: 14.0.h),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(30.r),
-        color: const Color(0xffF2F4F7),
+        color: const Color.fromRGBO(242, 244, 247, 1),
       ),
       child: TextField(
+        onTap: () => FocusScope.of(context).unfocus,
         cursorColor: const Color(0xff475E3E),
         controller: t1,
+        autofocus: false,
+        autocorrect: false,
+        keyboardType: TextInputType.text,
         decoration: InputDecoration(
           suffixIcon: Image.asset("assets/filter.png"),
           suffixIconConstraints: BoxConstraints(maxHeight: 18.0.w),

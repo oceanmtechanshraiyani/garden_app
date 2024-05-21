@@ -42,7 +42,7 @@ class _QrScreenState extends State<QrScreen> {
         title: const Text("QR Screen"),
       ),
       body: Center(
-        child: Container(
+        child: SizedBox(
           height: 500.h,
           width: 350.w,
           child: Column(

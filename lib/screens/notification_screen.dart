@@ -26,7 +26,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
         scrolledUnderElevation: 0,
         foregroundColor: Colors.black,
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        title: Text(
+        title: const Text(
           "Notifications",
           textAlign: TextAlign.center,
         ),
@@ -50,7 +50,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                 fillColor: Colors.black12,
                 filled: true,
                 border: OutlineInputBorder(
-                  borderRadius: BorderRadius.circular(10.0),
+                  borderRadius: BorderRadius.circular(10.0.r),
                   borderSide: BorderSide.none,
                 ),
               ),

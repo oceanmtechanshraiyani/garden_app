@@ -37,24 +37,28 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
+    bool showQrButton = MediaQuery.of(context).viewInsets.bottom != 0;
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-      resizeToAvoidBottomInset: false,
+      resizeToAvoidBottomInset: true,
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      floatingActionButton: FloatingActionButton(
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(180.w),
-        ),
-        backgroundColor: const Color(0xff475E3E),
-        onPressed: () => Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => const QrScreen(),
+      floatingActionButton: Visibility(
+        visible: !showQrButton,
+        child: FloatingActionButton(
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(180.w),
           ),
-        ),
-        child: const Icon(
-          Icons.qr_code_scanner_rounded,
-          color: Colors.white,
+          backgroundColor: const Color(0xff475E3E),
+          onPressed: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => const QrScreen(),
+            ),
+          ),
+          child: const Icon(
+            Icons.qr_code_scanner_rounded,
+            color: Colors.white,
+          ),
         ),
       ),
       body: pages[currentTabIndex],
