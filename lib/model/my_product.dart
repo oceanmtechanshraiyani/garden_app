@@ -38,7 +38,7 @@ class Myproducts {
     ),
     Product(
       id: 1,
-      name: 'opee Plant',
+      name: 'Opee Plant',
       category: 'All',
       image: 'assets/indoor/3.png',
       description:
@@ -54,7 +54,7 @@ class Myproducts {
     ),
     Product(
       id: 1,
-      name: 'sem Plant',
+      name: 'Sem Plant',
       category: 'All',
       image: 'assets/splash.png',
       description:
