@@ -40,7 +40,7 @@ class _ProductCardState extends State<ProductCard> {
               GestureDetector(
                 onTap: toggleLike,
                 child: CircleAvatar(
-                  backgroundColor: like ? const Color(0xffB5C9AD) : Colors.transparent,
+                  backgroundColor: Colors.transparent,
                   minRadius: 18.r,
                   child: Icon(
                     like ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
@@ -52,7 +52,7 @@ class _ProductCardState extends State<ProductCard> {
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height / 5.5,
-            width: MediaQuery.of(context).size.width,
+            width: MediaQuery.of(context).size.width, 
             child: Image.asset(
               widget.product.image,
               height: 140.h,
