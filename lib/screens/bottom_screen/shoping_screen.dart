@@ -12,6 +12,7 @@ class _ShopingScreenState extends State<ShopingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
+        automaticallyImplyLeading: false,
         title: const Text('Shoping Screen'),
       ),
     );

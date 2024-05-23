@@ -18,7 +18,6 @@ class SplashScreen extends StatelessWidget {
           title(),
           SizedBox(height: 14.h),
           mybutton(),
-          // SizedBox(height: 5.h)
         ],
       ),
     );

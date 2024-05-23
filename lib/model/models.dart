@@ -1,9 +1,21 @@
 import 'package:flutter/material.dart';
 
+class CategoryModel {
+  final int index;
+  final String name;
+
+  CategoryModel({
+    required this.index,
+    required this.name,
+  });
+}
+
+
+
 class Product {
   final int id;
   final String name;
-  final String category;
+  final int category;
   final String image;
   final String image1;
   final String description;

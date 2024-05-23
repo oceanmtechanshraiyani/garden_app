@@ -12,7 +12,8 @@ class _LikeScreenState extends State<LikeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  const Text('Like Screen'),
+        automaticallyImplyLeading: false,
+        title: const Text('Like Screen'),
       ),
       body: Container(),
     );

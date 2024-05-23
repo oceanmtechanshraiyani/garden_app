@@ -19,73 +19,22 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   TextEditingController t1 = TextEditingController();
   int isSelected = 0;
-  // int selectedBottomIocnIndex = 0;
 
   List<Product> display_grid = List.from(Myproducts.allProducts);
-  List<Product> display_grid1 = List.from(Myproducts.allindoorproduct);
-  List<Product> display_grid2 = List.from(Myproducts.alloutdoorProducts);
   void updateGrid(String value) {
-    // print("=======================${display_grid}");
-    // print("=======================${display_grid.contains(value.toLowerCase())}");
-    // if (value.isEmpty) {}
-    display_grid = Myproducts.allProducts
-        .where(
-          (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-        )
-        .toList();
-    display_grid1 = Myproducts.allindoorproduct
-        .where(
-          (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-        )
-        .toList();
-    display_grid2 = Myproducts.alloutdoorProducts
-        .where(
-          (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-        )
-        .toList();
+    setState(() {
+      if (isSelected == 0) {
+        display_grid = Myproducts.allProducts
+            .where((element) => element.name.toLowerCase().contains(value.toLowerCase()))
+            .toList();
+      } else {
+        display_grid = Myproducts.allProducts
+            .where(
+                (element) => element.name.toLowerCase().contains(value.toLowerCase()) && element.category == isSelected)
+            .toList();
+      }
+    });
   }
-
-  // void updateGrid1(String value) {
-  //   display_grid = Myproducts.allProducts
-  //       .where(
-  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-  //       )
-  //       .toList();
-  //   display_grid1 = Myproducts.allindoorproduct
-  //       .where(
-  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-  //       )
-  //       .toList();
-  //   display_grid2 = Myproducts.alloutdoorProducts
-  //       .where(
-  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-  //       )
-  //       .toList();
-  // }
-
-  // void updateGrid2(String value) {
-  //   display_grid = Myproducts.allProducts
-  //       .where(
-  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-  //       )
-  //       .toList();
-  //   display_grid1 = Myproducts.allindoorproduct
-  //       .where(
-  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-  //       )
-  //       .toList();
-  //   display_grid2 = Myproducts.alloutdoorProducts
-  //       .where(
-  //         (element) => element.name.toLowerCase().contains(value.toLowerCase()),
-  //       )
-  //       .toList();
-  // }
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     selectedBottomIocnIndex = index;
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -206,15 +155,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       child: TextField(
         onChanged: (value) => updateGrid(value),
-        // {
-
-        // print(value);
-        // isSelected == 0
-        //     ? updateGrid(value)
-        //     : isSelected == 1
-        //         ? updateGrid(value)
-        //         : updateGrid(value);
-        // },
         onTap: () => FocusScope.of(context).unfocus,
         cursorColor: const Color(0xff475E3E),
         controller: t1,
@@ -259,63 +199,73 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         SizedBox(height: 15.h),
         SizedBox(
-          height: 42.h,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              SizedBox(width: 10.w),
-              _categories(index: 0, name: 'All'),
-              SizedBox(width: 10.w),
-              _categories(index: 1, name: 'Indoor'),
-              SizedBox(width: 10.w),
-              _categories(index: 2, name: 'Outdoor'),
-              SizedBox(width: 10.w),
-              _categories(index: 3, name: 'Cactus'),
-              SizedBox(width: 10.w),
-            ],
-          ),
-        ),
+            height: 42.h,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              itemCount: Myproducts.categoryList.length,
+              itemBuilder: (context, index) {
+                final categoryList = Myproducts.categoryList[index];
+
+                return categoriesdata(index: index, name: categoryList.name);
+              },
+            )),
       ],
     ).marginSymmetric(horizontal: 20.0.h);
   }
 
-  Widget cardView(BuildContext context) {
-    return Expanded(
-      child: isSelected == 0
-          ? _buildAllProduct()
-          : isSelected == 1
-              ? _buildallindoorProduct()
-              : _buildoutdoorProduct(),
-    );
-  }
-
-  Widget _categories({required int index, required String name}) {
+  Widget categoriesdata({required int index, required String name}) {
     return GestureDetector(
       onTap: () => setState(
-        () => isSelected = index,
+        () {
+          isSelected = index;
+          updateGrid(t1.text);
+        },
       ),
-      child: Container(
-        height: 40.h,
-        padding: EdgeInsets.symmetric(horizontal: 20.0.h),
-        decoration: BoxDecoration(
-          border: Border.all(
-            color: const Color(0xffD0D5DD),
-            width: 1.5.w,
+      child: Padding(
+        padding: const EdgeInsets.only(left: 10.0),
+        child: Container(
+          height: 40.h,
+          padding: EdgeInsets.symmetric(horizontal: 20.0.h),
+          decoration: BoxDecoration(
+            border: Border.all(
+              color: const Color(0xffD0D5DD),
+              width: 1.5.w,
+            ),
+            borderRadius: BorderRadius.circular(29.r),
+            color: isSelected == index ? const Color(0xff475E3E) : const Color(0xffFCFCFD),
           ),
-          borderRadius: BorderRadius.circular(29.r),
-          color: isSelected == index ? const Color(0xff475E3E) : const Color(0xffFCFCFD),
-        ),
-        child: Center(
-          child: Text(
-            name,
-            style: TextStyle(
-              color: isSelected == index ? const Color(0xffFCFCFD) : const Color(0xffD0D5DD),
-              fontSize: 18.sp,
-              fontWeight: isSelected == index ? FontWeight.bold : FontWeight.w600,
+          child: Center(
+            child: Text(
+              name,
+              style: TextStyle(
+                color: isSelected == index ? const Color(0xffFCFCFD) : const Color(0xffD0D5DD),
+                fontSize: 18.sp,
+                fontWeight: isSelected == index ? FontWeight.bold : FontWeight.w600,
+              ),
             ),
           ),
         ),
       ),
+    );
+  }
+
+  Widget cardView(BuildContext context) {
+    List<Product> productdataList = [];
+    if (isSelected != 0) {
+      productdataList.addAll(Myproducts.allProducts
+          .where(
+            (element) => element.category == isSelected,
+          )
+          .toList());
+    }
+
+    return Expanded(
+      child: _buildAllProduct(),
+      //  isSelected == 0
+      //     ? _buildAllProduct()
+      //     : isSelected == 1
+      //         ? _buildallindoorProduct()
+      //         : _buildoutdoorProduct(),
     );
   }
 
@@ -331,7 +281,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       scrollDirection: Axis.vertical,
       itemCount: display_grid.length,
       itemBuilder: (context, index) {
-        final allProducts = Myproducts.allProducts[index];
+        final allProducts = display_grid[index];
         return GestureDetector(
           onTap: () => Navigator.push(
             context,
@@ -347,59 +297,59 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget _buildallindoorProduct() {
-    return GridView.builder(
-      padding: EdgeInsets.all(20.h),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: (100.w / 160.h),
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-      ),
-      scrollDirection: Axis.vertical,
-      itemCount: display_grid1.length,
-      itemBuilder: (context, index) {
-        final allindoorproduct = Myproducts.allindoorproduct[index];
-        return GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailScreen(product: allindoorproduct),
-            ),
-          ),
-          child: ProductCard(
-            product: allindoorproduct,
-          ),
-        );
-      },
-    );
-  }
+  // Widget _buildallindoorProduct() {
+  //   return GridView.builder(
+  //     padding: EdgeInsets.all(20.h),
+  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+  //       crossAxisCount: 2,
+  //       childAspectRatio: (100.w / 160.h),
+  //       crossAxisSpacing: 12,
+  //       mainAxisSpacing: 12,
+  //     ),
+  //     scrollDirection: Axis.vertical,
+  //     itemCount: display_grid1.length,
+  //     itemBuilder: (context, index) {
+  //       final allindoorproduct = Myproducts.allindoorproduct[index];
+  //       return GestureDetector(
+  //         onTap: () => Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (context) => DetailScreen(product: allindoorproduct),
+  //           ),
+  //         ),
+  //         child: ProductCard(
+  //           product: allindoorproduct,
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 
-  Widget _buildoutdoorProduct() {
-    return GridView.builder(
-      padding: EdgeInsets.all(20.h),
-      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-        crossAxisCount: 2,
-        childAspectRatio: (100.w / 160.h),
-        crossAxisSpacing: 12,
-        mainAxisSpacing: 12,
-      ),
-      scrollDirection: Axis.vertical,
-      itemCount: display_grid2.length,
-      itemBuilder: (context, index) {
-        final alloutdoorProducts = Myproducts.alloutdoorProducts[index];
-        return GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailScreen(product: alloutdoorProducts),
-            ),
-          ),
-          child: ProductCard(
-            product: alloutdoorProducts,
-          ),
-        );
-      },
-    );
-  }
+  // Widget _buildoutdoorProduct() {
+  //   return GridView.builder(
+  //     padding: EdgeInsets.all(20.h),
+  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+  //       crossAxisCount: 2,
+  //       childAspectRatio: (100.w / 160.h),
+  //       crossAxisSpacing: 12,
+  //       mainAxisSpacing: 12,
+  //     ),
+  //     scrollDirection: Axis.vertical,
+  //     itemCount: display_grid2.length,
+  //     itemBuilder: (context, index) {
+  //       final alloutdoorProducts = Myproducts.alloutdoorProducts[index];
+  //       return GestureDetector(
+  //         onTap: () => Navigator.push(
+  //           context,
+  //           MaterialPageRoute(
+  //             builder: (context) => DetailScreen(product: alloutdoorProducts),
+  //           ),
+  //         ),
+  //         child: ProductCard(
+  //           product: alloutdoorProducts,
+  //         ),
+  //       );
+  //     },
+  //   );
+  // }
 }
