@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
 import 'package:garden_app/model/my_product.dart';
 import 'package:garden_app/screens/detailscreen.dart';
@@ -19,21 +20,43 @@ class DashboardScreen extends StatefulWidget {
 class _DashboardScreenState extends State<DashboardScreen> {
   TextEditingController t1 = TextEditingController();
   int isSelected = 0;
+  bool _showClearButton = false;
 
-  List<Product> display_grid = List.from(Myproducts.allProducts);
+  List<Product> displayGrid = List.from(Myproducts.allProducts);
+
   void updateGrid(String value) {
+    if (value == '') {
+      _showClearButton = false;
+
+      setState(() {});
+    } else {
+      _showClearButton = true;
+      setState(() {});
+    }
+
     setState(() {
       if (isSelected == 0) {
-        display_grid = Myproducts.allProducts
+        displayGrid = Myproducts.allProducts
             .where((element) => element.name.toLowerCase().contains(value.toLowerCase()))
             .toList();
       } else {
-        display_grid = Myproducts.allProducts
+        displayGrid = Myproducts.allProducts
             .where(
                 (element) => element.name.toLowerCase().contains(value.toLowerCase()) && element.category == isSelected)
             .toList();
       }
     });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    t1.dispose();
+    super.dispose();
   }
 
   @override
@@ -155,14 +178,13 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       child: TextField(
         onChanged: (value) => updateGrid(value),
-        onTap: () => FocusScope.of(context).unfocus,
         cursorColor: const Color(0xff475E3E),
         controller: t1,
         autofocus: false,
         autocorrect: false,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
-          suffixIcon: Image.asset("assets/filter.png"),
+          suffixIcon: _showClearButton ? SvgPicture.asset("assets/CloseCircle.svg") : Image.asset("assets/filter.png"),
           suffixIconConstraints: BoxConstraints(maxHeight: 18.0.w),
           hintTextDirection: TextDirection.ltr,
           prefixIcon: Image.asset(
@@ -279,9 +301,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
         mainAxisSpacing: 12,
       ),
       scrollDirection: Axis.vertical,
-      itemCount: display_grid.length,
+      itemCount: displayGrid.length,
       itemBuilder: (context, index) {
-        final allProducts = display_grid[index];
+        final allProducts = displayGrid[index];
         return GestureDetector(
           onTap: () => Navigator.push(
             context,
