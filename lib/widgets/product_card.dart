@@ -16,6 +16,13 @@ class ProductCard extends StatefulWidget {
 
 class _ProductCardState extends State<ProductCard> {
   bool like = false;
+
+  void toggleLike() {
+    setState(() {
+      like = !like;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,12 +37,15 @@ class _ProductCardState extends State<ProductCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              CircleAvatar(
-                backgroundColor: const Color(0xffB5C9AD),
-                minRadius: 18.r,
-                child: const Icon(
-                  CupertinoIcons.heart_fill,
-                  color: Colors.red,
+              GestureDetector(
+                onTap: toggleLike,
+                child: CircleAvatar(
+                  backgroundColor: like ? const Color(0xffB5C9AD) : Colors.transparent,
+                  minRadius: 18.r,
+                  child: Icon(
+                    like ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                    color: Colors.red,
+                  ),
                 ),
               ),
             ],
