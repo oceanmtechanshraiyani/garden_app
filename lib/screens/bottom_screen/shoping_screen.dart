@@ -11,6 +11,7 @@ class _ShopingScreenState extends State<ShopingScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('Shoping Screen'),

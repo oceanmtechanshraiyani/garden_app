@@ -14,6 +14,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         // leading: IconButton(onPressed: () => Navigator.pop(context), icon: const Icon(Icons.arrow_back)),
@@ -54,7 +55,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 Text(
                   'Surat, Gujarat',
                   style: TextStyle(
-                    fontSize: 18.sp,
+                    fontSize: 18.sp,  
                     fontWeight: FontWeight.bold,
                     color: const Color(0xffD0D5DD),
                   ),

@@ -3,8 +3,6 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
 
-
-
 class LikeScreen extends StatefulWidget {
   final List<Product> likedPlant;
   const LikeScreen({super.key, required this.likedPlant});
@@ -17,6 +15,7 @@ class _LikeScreenState extends State<LikeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         automaticallyImplyLeading: false,
         title: const Text('Like Screen'),
