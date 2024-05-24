@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:garden_app/model/my_product.dart';
 
 class CategoryModel {
   final int index;
@@ -10,8 +11,6 @@ class CategoryModel {
   });
 }
 
-
-
 class Product {
   final int id;
   final String name;
@@ -22,6 +21,8 @@ class Product {
   final double price;
   final int quantity;
   final Widget icon;
+  final bool islike;
+  final bool isLikeSelectedIndex;
 
   Product({
     required this.id,
@@ -33,5 +34,12 @@ class Product {
     required this.price,
     required this.quantity,
     required this.icon,
+    required this.islike,
+    required this.isLikeSelectedIndex,
   });
+
+  static List<Product> getlikePlants() {
+    List<Product> travelList = Myproducts.allProducts;
+    return travelList.where((element) => element.islike == true).toList();
+  }
 }

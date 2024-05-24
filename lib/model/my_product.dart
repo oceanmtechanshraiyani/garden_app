@@ -25,6 +25,8 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
     Product(
       id: 1,
@@ -41,6 +43,8 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
     Product(
       id: 1,
@@ -57,6 +61,8 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
     Product(
       id: 1,
@@ -73,6 +79,8 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
     Product(
       id: 1,
@@ -89,6 +97,8 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
     Product(
       id: 1,
@@ -105,8 +115,10 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
-      Product(
+    Product(
       id: 1,
       name: 'Jade Plant',
       category: 2,
@@ -121,6 +133,8 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
     Product(
       id: 1,
@@ -137,6 +151,8 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
     Product(
       id: 1,
@@ -153,6 +169,8 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
     Product(
       id: 1,
@@ -169,9 +187,12 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
+      islike: true,
+      isLikeSelectedIndex: false,
     ),
-  
   ];
+
+
 /*
   static List<Product> allindoorproduct = [
     Product(

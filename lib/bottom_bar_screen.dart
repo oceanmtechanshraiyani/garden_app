@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/Qr_Screen.dart';
+import 'package:garden_app/model/models.dart';
 import 'package:garden_app/screens/bottom_screen/like_screen.dart';
 import 'package:garden_app/screens/bottom_screen/shoping_screen.dart';
 import 'package:garden_app/screens/dashboard_screen.dart';
@@ -14,20 +15,30 @@ class BottomNavBarScreen extends StatefulWidget {
 }
 
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
+  List<Product> likes = [];
+
   int currentTabIndex = 0;
   // late List<Widget> pages;
 
-  @override
-  void initState() {
-    super.initState();
+  List<Widget> widetOption() {
+    return [
+      const DashboardScreen(),
+      LikeScreen(
+        likedPlant: likes,
+      ),
+      const ShopingScreen(),
+      const ProfileScreen(),
+    ];
   }
 
-  List<Widget> pages = [
-    const DashboardScreen(),
-    const LikeScreen(),
-    const ShopingScreen(),
-    const ProfileScreen(),
-  ];
+  // List<Widget> pages = [
+  //   const DashboardScreen(),
+  //   LikeScreen(
+  //     likedPlant: likes,
+  //   ),
+  //   const ShopingScreen(),
+  //   const ProfileScreen(),
+  // ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -61,7 +72,11 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
           ),
         ),
       ),
-      body: pages[currentTabIndex],
+      // body: pages[currentTabIndex],
+      body: IndexedStack(
+        index: currentTabIndex,
+        children: widetOption(),
+      ),
       bottomNavigationBar: CustomBottomNavBar(
         currentIndex: currentTabIndex,
         onItemTapped: _onItemTapped,
@@ -126,7 +141,19 @@ class CustomBottomNavBar extends StatelessWidget {
 
   Widget _buildNavItem(IconData icon, int index) {
     return GestureDetector(
-      onTap: () => onItemTapped(index),
+      onTap: () {
+        onItemTapped(index);
+
+        // setState() {
+        //   // index;
+        //   List<Product> likes = [];
+
+        //   final List<Product> likesPlants = Product.getlikePlants();
+
+        //   likes = likesPlants;
+        // }
+      },
+      // onTap: () => onItemTapped(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,

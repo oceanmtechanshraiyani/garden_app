@@ -49,11 +49,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
   void dispose() {
     t1.dispose();
     super.dispose();
@@ -243,30 +238,32 @@ class _DashboardScreenState extends State<DashboardScreen> {
           updateGrid(t1.text);
         },
       ),
-      child: Padding(
-        padding: const EdgeInsets.only(left: 10.0),
-        child: Container(
-          height: 40.h,
-          padding: EdgeInsets.symmetric(horizontal: 20.0.h),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: const Color(0xffD0D5DD),
-              width: 1.5.w,
+      child: Row(
+        children: [
+          Container(
+            height: 40.h,
+            padding: EdgeInsets.symmetric(horizontal: 20.0.h),
+            decoration: BoxDecoration(
+              border: Border.all(
+                color: const Color(0xffD0D5DD),
+                width: 1.5.w,
+              ),
+              borderRadius: BorderRadius.circular(29.r),
+              color: isSelected == index ? const Color(0xff475E3E) : const Color(0xffFCFCFD),
             ),
-            borderRadius: BorderRadius.circular(29.r),
-            color: isSelected == index ? const Color(0xff475E3E) : const Color(0xffFCFCFD),
-          ),
-          child: Center(
-            child: Text(
-              name,
-              style: TextStyle(
-                color: isSelected == index ? const Color(0xffFCFCFD) : const Color(0xffD0D5DD),
-                fontSize: 18.sp,
-                fontWeight: isSelected == index ? FontWeight.bold : FontWeight.w600,
+            child: Center(
+              child: Text(
+                name,
+                style: TextStyle(
+                  color: isSelected == index ? const Color(0xffFCFCFD) : const Color(0xffD0D5DD),
+                  fontSize: 18.sp,
+                  fontWeight: isSelected == index ? FontWeight.bold : FontWeight.w600,
+                ),
               ),
             ),
           ),
-        ),
+          SizedBox(width: 10.w)
+        ],
       ),
     );
   }
