@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
+import 'package:garden_app/screens/global.dart';
+import 'package:garden_app/widgets/product_card.dart';
 
 class LikeScreen extends StatefulWidget {
   final List<Product> likedPlant;
@@ -20,42 +21,23 @@ class _LikeScreenState extends State<LikeScreen> {
         automaticallyImplyLeading: false,
         title: const Text('Like Screen'),
       ),
-      body: widget.likedPlant.isEmpty
-          ? Center(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  SizedBox(
-                    height: 100.h,
-                    child: SvgPicture.asset(
-                      "assets/bottomnavitems/Heart.svg",
-                      height: 100.h,
-                    ),
-                  ),
-                  SizedBox(height: 10.h),
-                  Text(
-                    "Your Favourite Plant",
-                    style: TextStyle(
-                      color: Colors.grey,
-                      fontWeight: FontWeight.w300,
-                      fontSize: 18.sp,
-                    ),
-                  )
-                ],
-              ),
-            )
-          : Container(
-              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 30),
-              child: ListView.builder(
-                itemCount: widget.likedPlant.length,
-                scrollDirection: Axis.vertical,
-                physics: const BouncingScrollPhysics(),
-                itemBuilder: (context, index) {
-                  return Container();
-                },
-              ),
-            ),
+      body: GridView.builder(
+        padding: EdgeInsets.all(20.h),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: (100.w / 160.h),
+          crossAxisSpacing: 12,
+          mainAxisSpacing: 12,
+        ),
+        scrollDirection: Axis.vertical,
+        itemCount: favoritePlants.length,
+        itemBuilder: (context, index) {
+          final allProducts = favoritePlants[index];
+          return ProductCard(
+            product: allProducts,
+          );
+        },
+      ),
     );
   }
 }

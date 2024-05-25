@@ -5,6 +5,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
 import 'package:garden_app/model/my_product.dart';
 import 'package:garden_app/screens/detailscreen.dart';
+import 'package:garden_app/screens/global.dart';
 import 'package:garden_app/screens/notification_screen.dart';
 import 'package:garden_app/widgets/product_card.dart';
 import 'package:garden_app/widgets/profile_screen.dart';
@@ -19,6 +20,7 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   TextEditingController t1 = TextEditingController();
+  List<bool> isIconClickedList = List.generate(100, (index) => false);
   int isSelected = 0;
   bool _showClearButton = false;
 
@@ -302,12 +304,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
       itemBuilder: (context, index) {
         final allProducts = displayGrid[index];
         return GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => DetailScreen(product: allProducts),
-            ),
-          ),
+          onTap: () {
+            isIconClickedList[index] = !isIconClickedList[index];
+            if (isIconClickedList[index]) {
+              favoritePlants.add(allProducts);
+            } else {
+              favoritePlants.remove(allProducts);
+            }
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => DetailScreen(product: allProducts),
+              ),
+            );
+          },
           child: ProductCard(
             product: allProducts,
           ),

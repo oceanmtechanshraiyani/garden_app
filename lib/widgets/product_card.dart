@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/model/models.dart';
+import 'package:garden_app/model/my_product.dart';
 
 class ProductCard extends StatefulWidget {
   final Product product;
@@ -15,6 +16,10 @@ class ProductCard extends StatefulWidget {
 }
 
 class _ProductCardState extends State<ProductCard> {
+  List<bool> isIconClickedList = List.generate(100, (index) => false);
+
+  List<Product> displayGrid = List.from(Myproducts.allProducts);
+
   bool like = false;
 
   void toggleLike() {
@@ -22,6 +27,20 @@ class _ProductCardState extends State<ProductCard> {
       like = !like;
     });
   }
+  // void toggleLike(int index) {
+  //   setState(() {
+  //     isIconClickedList[index] = !isIconClickedList[index];
+  //     if (isIconClickedList[index]) {
+  //       like = !like;
+
+  //       favoritePlants.add(Myproducts.allProducts[index]);
+  //     } else {
+  //       like = !like;
+
+  //       favoritePlants.remove(Myproducts.allProducts[index]);
+  //     }
+  //   });
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -37,22 +56,27 @@ class _ProductCardState extends State<ProductCard> {
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              GestureDetector(
-                onTap: toggleLike,
-                child: CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  minRadius: 18.r,
-                  child: Icon(
-                    like ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
-                    color: Colors.red,
+              Stack(
+                children: [
+                  GestureDetector(
+                    onTap: () => toggleLike,
+                    // toggleLike,
+                    child: CircleAvatar(
+                      backgroundColor: Colors.transparent,
+                      minRadius: 18.r,
+                      child: Icon(
+                        like ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
+                        color: Colors.red,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height / 5.5,
-            width: MediaQuery.of(context).size.width, 
+            width: MediaQuery.of(context).size.width,
             child: Image.asset(
               widget.product.image,
               height: 140.h,
