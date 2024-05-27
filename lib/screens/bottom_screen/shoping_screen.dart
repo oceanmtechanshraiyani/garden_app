@@ -13,6 +13,7 @@ class _ShopingScreenState extends State<ShopingScreen> {
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
         automaticallyImplyLeading: false,
         title: const Text('Shoping Screen'),
       ),

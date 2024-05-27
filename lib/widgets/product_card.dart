@@ -1,99 +1,57 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:garden_app/model/models.dart';
-import 'package:garden_app/model/my_product.dart';
 
-class ProductCard extends StatefulWidget {
+class ProductCard extends StatelessWidget {
   final Product product;
+  final VoidCallback onLikeToggle;
+  final bool isLiked;
+
   const ProductCard({
     super.key,
     required this.product,
+    required this.onLikeToggle,
+    required this.isLiked,
   });
-
-  @override
-  State<ProductCard> createState() => _ProductCardState();
-}
-
-class _ProductCardState extends State<ProductCard> {
-  List<bool> isIconClickedList = List.generate(100, (index) => false);
-
-  List<Product> displayGrid = List.from(Myproducts.allProducts);
-
-  bool like = false;
-
-  void toggleLike() {
-    setState(() {
-      like = !like;
-    });
-  }
-  // void toggleLike(int index) {
-  //   setState(() {
-  //     isIconClickedList[index] = !isIconClickedList[index];
-  //     if (isIconClickedList[index]) {
-  //       like = !like;
-
-  //       favoritePlants.add(Myproducts.allProducts[index]);
-  //     } else {
-  //       like = !like;
-
-  //       favoritePlants.remove(Myproducts.allProducts[index]);
-  //     }
-  //   });
-  // }
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: MediaQuery.of(context).size.width / 2.w,
+      width: 160.w, // Adjust width to be responsive
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
         color: const Color(0xffF0F4EF),
       ),
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch, // Make the column stretch to fit the container width
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              Stack(
-                children: [
-                  GestureDetector(
-                    onTap: () => toggleLike,
-                    // toggleLike,
-                    child: CircleAvatar(
-                      backgroundColor: Colors.transparent,
-                      minRadius: 18.r,
-                      child: Icon(
-                        like ? CupertinoIcons.heart_fill : CupertinoIcons.heart,
-                        color: Colors.red,
-                      ),
-                    ),
-                  ),
-                ],
+              GestureDetector(
+                onTap: onLikeToggle,
+                child: isLiked
+                    ? SvgPicture.asset("assets/bottomnavitems/heart_filled.svg")
+                    : SvgPicture.asset("assets/bottomnavitems/heart_outline.svg"),
               ),
             ],
           ),
           SizedBox(
-            height: MediaQuery.of(context).size.height / 5.5,
-            width: MediaQuery.of(context).size.width,
+            height: 140.h, // Adjust height to be responsive
             child: Image.asset(
-              widget.product.image,
-              height: 140.h,
+              product.image,
               fit: BoxFit.fill,
             ),
           ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Padding(
-                padding: const EdgeInsets.only(top: 9.0),
-                child: Text(
-                  widget.product.name,
-                  style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
-                ),
-              ),
-            ],
+          Padding(
+            padding: EdgeInsets.only(top: 9.h),
+            child: Text(
+              product.name,
+              style: TextStyle(fontSize: 15.sp, fontWeight: FontWeight.bold),
+            ),
           ),
           SizedBox(height: 10.h),
           Row(
@@ -106,10 +64,15 @@ class _ProductCardState extends State<ProductCard> {
                   borderRadius: BorderRadius.circular(20.r),
                 ),
                 child: Center(
-                    child: Text(
-                  '\$' '${widget.product.price}',
-                  style: TextStyle(fontSize: 14.sp, fontWeight: FontWeight.w500, color: Colors.black),
-                )),
+                  child: Text(
+                    '\$${product.price}',
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
               ),
               CircleAvatar(
                 backgroundColor: const Color(0xffB5C9AD),

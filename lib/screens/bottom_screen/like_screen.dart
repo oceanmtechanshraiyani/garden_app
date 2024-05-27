@@ -5,8 +5,7 @@ import 'package:garden_app/screens/global.dart';
 import 'package:garden_app/widgets/product_card.dart';
 
 class LikeScreen extends StatefulWidget {
-  final List<Product> likedPlant;
-  const LikeScreen({super.key, required this.likedPlant});
+  const LikeScreen({super.key, required List<Product> likedPlant});
 
   @override
   State<LikeScreen> createState() => _LikeScreenState();
@@ -19,25 +18,56 @@ class _LikeScreenState extends State<LikeScreen> {
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        title: const Text('Like Screen'),
-      ),
-      body: GridView.builder(
-        padding: EdgeInsets.all(20.h),
-        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,
-          childAspectRatio: (100.w / 160.h),
-          crossAxisSpacing: 12,
-          mainAxisSpacing: 12,
+        backgroundColor: const Color.fromARGB(255, 255, 255, 255),
+        title: const Text(
+          'Favorite Plants',
+          style: TextStyle(
+            color: Colors.black,
+          ),
         ),
-        scrollDirection: Axis.vertical,
-        itemCount: favoritePlants.length,
-        itemBuilder: (context, index) {
-          final allProducts = favoritePlants[index];
-          return ProductCard(
-            product: allProducts,
-          );
-        },
+        iconTheme: const IconThemeData(color: Colors.black),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back),
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+        ),
       ),
+      body: favoritePlants.isEmpty
+          ? Center(
+              child: Text(
+                'No favorite plants yet!',
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  color: Colors.grey,
+                ),
+              ),
+            )
+          : GridView.builder(
+              padding: EdgeInsets.all(20.h),
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                childAspectRatio: (100.w / 160.h),
+                crossAxisSpacing: 12,
+                mainAxisSpacing: 12,
+              ),
+              scrollDirection: Axis.vertical,
+              itemCount: favoritePlants.length,
+              itemBuilder: (context, index) {
+                final allProducts = favoritePlants[index];
+                return ProductCard(
+                  product: allProducts,
+                  onLikeToggle: () {
+                    setState(() {
+                      if (favoritePlants.contains(allProducts)) {
+                        favoritePlants.remove(allProducts);
+                      }
+                    });
+                  },
+                  isLiked: favoritePlants.contains(allProducts),
+                );
+              },
+            ),
     );
   }
 }

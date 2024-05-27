@@ -123,16 +123,18 @@ class CustomBottomNavBar extends StatelessWidget {
           height: 68.h,
           width: 375.w,
           padding: EdgeInsets.symmetric(vertical: 10.h),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
-              _buildNavItem(Icons.home, 0),
-              _buildNavItem(Icons.favorite, 1),
-              SizedBox(width: 10.w),
-              _buildNavItem(Icons.shopping_cart, 2),
-              _buildNavItem(Icons.person, 3),
-            ],
+          child: Center(
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                _buildNavItem(Icons.home, 0),
+                _buildNavItem(Icons.favorite, 1),
+                SizedBox(width: 10.w),
+                _buildNavItem(Icons.shopping_cart, 2),
+                _buildNavItem(Icons.person, 3),
+              ],
+            ),
           ),
         ),
       ),
@@ -161,7 +163,7 @@ class CustomBottomNavBar extends StatelessWidget {
           Icon(
             icon,
             color: currentIndex == index ? const Color(0xff475E3E) : Colors.grey,
-            size: 22.h,
+            size: 24.h,
           ),
         ],
       ),

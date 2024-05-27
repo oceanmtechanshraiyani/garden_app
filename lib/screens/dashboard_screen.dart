@@ -20,20 +20,17 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   TextEditingController t1 = TextEditingController();
-  List<bool> isIconClickedList = List.generate(100, (index) => false);
+  List<bool> isIconClickedList = List.generate(Myproducts.allProducts.length, (index) => false);
   int isSelected = 0;
   bool _showClearButton = false;
 
   List<Product> displayGrid = List.from(Myproducts.allProducts);
 
   void updateGrid(String value) {
-    if (value == '') {
+    if (value.isEmpty) {
       _showClearButton = false;
-
-      setState(() {});
     } else {
       _showClearButton = true;
-      setState(() {});
     }
 
     setState(() {
@@ -70,11 +67,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             location(),
             SizedBox(height: 20.h),
             searchbar(),
-            // SearchScreen(),
             SizedBox(height: 20.h),
             categories(),
             SizedBox(height: 10.h),
-            cardView(context),
+            Expanded(child: cardView(context)),
             SizedBox(height: 0.5.h)
           ],
         ),
@@ -124,10 +120,11 @@ class _DashboardScreenState extends State<DashboardScreen> {
         const Spacer(),
         GestureDetector(
           onTap: () => Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => const NotificationScreen(),
-              )),
+            context,
+            MaterialPageRoute(
+              builder: (context) => const NotificationScreen(),
+            ),
+          ),
           child: CircleAvatar(
             radius: 21.r,
             backgroundColor: const Color(0xffF2F4F7),
@@ -181,7 +178,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
         autocorrect: false,
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
-          suffixIcon: _showClearButton ? SvgPicture.asset("assets/CloseCircle.svg") : Image.asset("assets/filter.png"),
+          suffixIcon: _showClearButton
+              ? IconButton(
+                  icon: SvgPicture.asset("assets/CloseCircle.svg"),
+                  onPressed: () {
+                    t1.clear();
+                    updateGrid('');
+                  },
+                )
+              : Image.asset("assets/filter.png"),
           suffixIconConstraints: BoxConstraints(maxHeight: 18.0.w),
           hintTextDirection: TextDirection.ltr,
           prefixIcon: Image.asset(
@@ -218,28 +223,26 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
         SizedBox(height: 15.h),
         SizedBox(
-            height: 42.h,
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: Myproducts.categoryList.length,
-              itemBuilder: (context, index) {
-                final categoryList = Myproducts.categoryList[index];
-
-                return categoriesdata(index: index, name: categoryList.name);
-              },
-            )),
+          height: 42.h,
+          child: ListView.builder(
+            scrollDirection: Axis.horizontal,
+            itemCount: Myproducts.categoryList.length,
+            itemBuilder: (context, index) {
+              final categoryList = Myproducts.categoryList[index];
+              return categoriesdata(index: index, name: categoryList.name);
+            },
+          ),
+        ),
       ],
     ).marginSymmetric(horizontal: 20.0.h);
   }
 
   Widget categoriesdata({required int index, required String name}) {
     return GestureDetector(
-      onTap: () => setState(
-        () {
-          isSelected = index;
-          updateGrid(t1.text);
-        },
-      ),
+      onTap: () => setState(() {
+        isSelected = index;
+        updateGrid(t1.text);
+      }),
       child: Row(
         children: [
           Container(
@@ -271,26 +274,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget cardView(BuildContext context) {
-    List<Product> productdataList = [];
-    if (isSelected != 0) {
-      productdataList.addAll(Myproducts.allProducts
-          .where(
-            (element) => element.category == isSelected,
-          )
-          .toList());
-    }
-
-    return Expanded(
-      child: _buildAllProduct(),
-      //  isSelected == 0
-      //     ? _buildAllProduct()
-      //     : isSelected == 1
-      //         ? _buildallindoorProduct()
-      //         : _buildoutdoorProduct(),
-    );
-  }
-
-  Widget _buildAllProduct() {
     return GridView.builder(
       padding: EdgeInsets.all(20.h),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -303,14 +286,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
       itemCount: displayGrid.length,
       itemBuilder: (context, index) {
         final allProducts = displayGrid[index];
+        final isLiked = favoritePlants.contains(allProducts);
         return GestureDetector(
           onTap: () {
-            isIconClickedList[index] = !isIconClickedList[index];
-            if (isIconClickedList[index]) {
-              favoritePlants.add(allProducts);
-            } else {
-              favoritePlants.remove(allProducts);
-            }
             Navigator.push(
               context,
               MaterialPageRoute(
@@ -320,65 +298,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
           },
           child: ProductCard(
             product: allProducts,
+            onLikeToggle: () {
+              setState(() {
+                if (isLiked) {
+                  favoritePlants.remove(allProducts);
+                } else {
+                  favoritePlants.add(allProducts);
+                }
+              });
+            },
+            isLiked: isLiked,
           ),
         );
       },
     );
   }
-
-  // Widget _buildallindoorProduct() {
-  //   return GridView.builder(
-  //     padding: EdgeInsets.all(20.h),
-  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //       crossAxisCount: 2,
-  //       childAspectRatio: (100.w / 160.h),
-  //       crossAxisSpacing: 12,
-  //       mainAxisSpacing: 12,
-  //     ),
-  //     scrollDirection: Axis.vertical,
-  //     itemCount: display_grid1.length,
-  //     itemBuilder: (context, index) {
-  //       final allindoorproduct = Myproducts.allindoorproduct[index];
-  //       return GestureDetector(
-  //         onTap: () => Navigator.push(
-  //           context,
-  //           MaterialPageRoute(
-  //             builder: (context) => DetailScreen(product: allindoorproduct),
-  //           ),
-  //         ),
-  //         child: ProductCard(
-  //           product: allindoorproduct,
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
-
-  // Widget _buildoutdoorProduct() {
-  //   return GridView.builder(
-  //     padding: EdgeInsets.all(20.h),
-  //     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-  //       crossAxisCount: 2,
-  //       childAspectRatio: (100.w / 160.h),
-  //       crossAxisSpacing: 12,
-  //       mainAxisSpacing: 12,
-  //     ),
-  //     scrollDirection: Axis.vertical,
-  //     itemCount: display_grid2.length,
-  //     itemBuilder: (context, index) {
-  //       final alloutdoorProducts = Myproducts.alloutdoorProducts[index];
-  //       return GestureDetector(
-  //         onTap: () => Navigator.push(
-  //           context,
-  //           MaterialPageRoute(
-  //             builder: (context) => DetailScreen(product: alloutdoorProducts),
-  //           ),
-  //         ),
-  //         child: ProductCard(
-  //           product: alloutdoorProducts,
-  //         ),
-  //       );
-  //     },
-  //   );
-  // }
 }
