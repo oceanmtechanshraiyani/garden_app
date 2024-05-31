@@ -17,7 +17,7 @@ class SplashScreen extends StatelessWidget {
           SizedBox(height: 10.h),
           title(),
           SizedBox(height: 14.h),
-          mybutton(),
+          mybutton(context),
         ],
       ),
     );
@@ -62,11 +62,14 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  Widget mybutton() {
+  Widget mybutton(BuildContext context) {
     return GestureDetector(
-      onTap: () {
-        Get.to(const BottomNavBarScreen());
-      },
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => BottomNavBarScreen(),
+        ),
+      ),
       child: Container(
         height: 52.w,
         padding: EdgeInsets.symmetric(

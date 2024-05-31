@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/model/models.dart';
+import 'package:garden_app/screens/detailscreen.dart';
 import 'package:garden_app/screens/global.dart';
 import 'package:garden_app/widgets/product_card.dart';
 
@@ -28,12 +29,6 @@ class _LikeScreenState extends State<LikeScreen> {
         iconTheme: const IconThemeData(
           color: Colors.black,
         ),
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-          ),
-          onPressed: () => Navigator.of(context).pop(),
-        ),
       ),
       body: favoritePlants.isEmpty
           ? Center(
@@ -57,18 +52,26 @@ class _LikeScreenState extends State<LikeScreen> {
               itemCount: favoritePlants.length,
               itemBuilder: (context, index) {
                 final allProducts = favoritePlants[index];
-                return ProductCard(
-                  product: allProducts,
-                  onLikeToggle: () {
-                    setState(
-                      () {
-                        if (favoritePlants.contains(allProducts)) {
-                          favoritePlants.remove(allProducts);
-                        }
-                      },
-                    );
-                  },
-                  isLiked: favoritePlants.contains(allProducts),
+                return GestureDetector(
+                  onTap: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => DetailScreen(product: allProducts),
+                    ),
+                  ),
+                  child: ProductCard(
+                    product: allProducts,
+                    onLikeToggle: () {
+                      setState(
+                        () {
+                          if (favoritePlants.contains(allProducts)) {
+                            favoritePlants.remove(allProducts);
+                          }
+                        },
+                      );
+                    },
+                    isLiked: favoritePlants.contains(allProducts),
+                  ),
                 );
               },
             ),
