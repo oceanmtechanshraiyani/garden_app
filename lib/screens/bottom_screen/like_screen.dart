@@ -66,6 +66,8 @@ class _LikeScreenState extends State<LikeScreen> {
                         () {
                           if (favoritePlants.contains(allProducts)) {
                             favoritePlants.remove(allProducts);
+                          } else {
+                            favoritePlants.add(allProducts);
                           }
                         },
                       );

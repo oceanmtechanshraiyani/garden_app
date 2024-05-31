@@ -180,6 +180,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         color: const Color.fromRGBO(242, 244, 247, 1),
       ),
       child: TextField(
+        textAlign: TextAlign.start,
         onChanged: (value) => updateGrid(value),
         cursorColor: const Color(0xff475E3E),
         controller: t1,
@@ -188,19 +189,24 @@ class _DashboardScreenState extends State<DashboardScreen> {
         keyboardType: TextInputType.text,
         decoration: InputDecoration(
           suffixIcon: _showClearButton
-              ? IconButton(
-                  icon: SvgPicture.asset(
-                    "assets/CloseCircle.svg",
-                  ),
-                  onPressed: () {
+              ? InkWell(
+                  onTap: () {
                     t1.clear();
                     updateGrid('');
                   },
+                  child: SvgPicture.asset(
+                    "assets/CloseCircle.svg",
+                  ),
                 )
               : Image.asset(
                   "assets/filter.png",
                 ),
-          suffixIconConstraints: BoxConstraints(maxHeight: 18.0.w),
+          suffixIconConstraints: BoxConstraints(
+            maxHeight: 28.0.w,
+            maxWidth: 18.0.w,
+            minHeight: 18.w,
+            minWidth: 18.w,
+          ),
           hintTextDirection: TextDirection.ltr,
           prefixIcon: Image.asset(
             "assets/search.png",
@@ -208,15 +214,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
             width: 33.w,
             alignment: Alignment.topLeft,
           ),
-          prefixIconConstraints: BoxConstraints(maxHeight: 24.0.h),
+          prefixIconConstraints: BoxConstraints(
+            maxHeight: 24.0.h,
+          ),
           border: InputBorder.none,
           fillColor: const Color(0xffF2F4F7),
           filled: true,
           hintText: "Search Here",
           isDense: true,
-          hintStyle: const TextStyle(
-            fontSize: 14,
-            color: Color(0xff98A2B3),
+          hintStyle: TextStyle(
+            fontSize: 14.sp,
+            color: const Color(0xff98A2B3),
           ),
         ),
       ),
