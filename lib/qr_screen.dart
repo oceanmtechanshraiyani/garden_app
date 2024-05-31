@@ -21,7 +21,6 @@ class _QrScreenState extends State<QrScreen> {
     this.controller = controller;
     controller.scannedDataStream.listen((scanData) {
       setState(() {
-        // result = scanData;
         scancode = scanData.code!;
       });
     });
@@ -58,23 +57,24 @@ class _QrScreenState extends State<QrScreen> {
               Expanded(
                 flex: 2,
                 child: Center(
-                    child: Column(
-                  children: [
-                    const Expanded(
-                      child: Text("Scan Code"),
-                    ),
-                    Expanded(
-                      child: Link(
-                        target: LinkTarget.blank,
-                        uri: Uri.parse(scancode),
-                        builder: (context, followLink) => TextButton(
-                          onPressed: followLink,
-                          child: Text(scancode),
+                  child: Column(
+                    children: [
+                      const Expanded(
+                        child: Text("Scan Code"),
+                      ),
+                      Expanded(
+                        child: Link(
+                          target: LinkTarget.blank,
+                          uri: Uri.parse(scancode),
+                          builder: (context, followLink) => TextButton(
+                            onPressed: followLink,
+                            child: Text(scancode),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
-                )),
+                    ],
+                  ),
+                ),
               )
             ],
           ),

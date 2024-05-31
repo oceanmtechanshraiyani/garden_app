@@ -25,12 +25,14 @@ class _LikeScreenState extends State<LikeScreen> {
             color: Colors.black,
           ),
         ),
-        iconTheme: const IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(
+          color: Colors.black,
+        ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
+          icon: const Icon(
+            Icons.arrow_back,
+          ),
+          onPressed: () => Navigator.of(context).pop(),
         ),
       ),
       body: favoritePlants.isEmpty
@@ -58,11 +60,13 @@ class _LikeScreenState extends State<LikeScreen> {
                 return ProductCard(
                   product: allProducts,
                   onLikeToggle: () {
-                    setState(() {
-                      if (favoritePlants.contains(allProducts)) {
-                        favoritePlants.remove(allProducts);
-                      }
-                    });
+                    setState(
+                      () {
+                        if (favoritePlants.contains(allProducts)) {
+                          favoritePlants.remove(allProducts);
+                        }
+                      },
+                    );
                   },
                   isLiked: favoritePlants.contains(allProducts),
                 );

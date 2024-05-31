@@ -40,16 +40,22 @@ class _DetailScreenState extends State<DetailScreen> {
           leading: Padding(
             padding: EdgeInsets.only(top: 18.0.h, left: 10.0.w),
             child: GestureDetector(
-                onTap: () => Navigator.pop(context),
-                child: Image.asset(
-                  'assets/backButton.png',
-                )),
+              onTap: () => Navigator.pop(context),
+              child: Image.asset(
+                'assets/backButton.png',
+              ),
+            ),
           ),
           actions: [
             Padding(
-              padding: EdgeInsets.only(top: 18.0.h, right: 10.w),
-              child: Image.asset('assets/like.png'),
-            )
+              padding: EdgeInsets.only(
+                top: 18.0.h,
+                right: 10.w,
+              ),
+              child: Image.asset(
+                'assets/like.png',
+              ),
+            ),
           ],
         ),
         body: Stack(
@@ -110,7 +116,10 @@ class _DetailScreenState extends State<DetailScreen> {
                                 children: [
                                   Text(
                                     widget.product.name,
-                                    style: TextStyle(fontSize: 24.sp, fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontSize: 24.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -122,7 +131,10 @@ class _DetailScreenState extends State<DetailScreen> {
                                   Text(
                                     '\$' '${widget.product.price}',
                                     style: TextStyle(
-                                        fontSize: 20.sp, fontWeight: FontWeight.w500, color: const Color(0xff475E3E)),
+                                      fontSize: 20.sp,
+                                      fontWeight: FontWeight.w500,
+                                      color: const Color(0xff475E3E),
+                                    ),
                                   ),
                                   const Spacer(),
                                   Padding(
@@ -134,10 +146,8 @@ class _DetailScreenState extends State<DetailScreen> {
                                         boxShadow: [
                                           BoxShadow(
                                             color: const Color(0xff000000),
-
                                             blurRadius: 0.5.r,
                                             offset: Offset.infinite,
-                                            // spreadRadius: 1,
                                           ),
                                         ],
                                       ),
@@ -162,7 +172,10 @@ class _DetailScreenState extends State<DetailScreen> {
                                           CircleAvatar(
                                             backgroundColor: const Color(0xffB5C9AD),
                                             child: IconButton(
-                                              icon: const Icon(Icons.add, color: Colors.white),
+                                              icon: const Icon(
+                                                Icons.add,
+                                                color: Colors.white,
+                                              ),
                                               onPressed: incrementnumber,
                                             ),
                                           ),
@@ -192,16 +205,17 @@ class _DetailScreenState extends State<DetailScreen> {
                                 ],
                               ),
                             ),
-
                             SizedBox(height: 8.h),
-
                             Padding(
                               padding: const EdgeInsets.only(left: 8.0),
                               child: Row(
                                 children: [
                                   Text(
                                     'About Plant',
-                                    style: TextStyle(fontSize: 18.sp, fontWeight: FontWeight.bold),
+                                    style: TextStyle(
+                                      fontSize: 18.sp,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ],
                               ),
@@ -248,14 +262,12 @@ class _DetailScreenState extends State<DetailScreen> {
                       backgroundColor: WidgetStatePropertyAll(
                     Color(0xff475E3E),
                   )),
-                  //  ButtonStyle(
-                  //   backgroundColor: MaterialStateProperty.all(
-                  //     const Color(0xff475E3E),
-                  //   ),
-                  // ),
                   child: const Text(
                     "Buy Now!",
-                    style: TextStyle(color: Color(0xffF0F4EF), fontSize: 22),
+                    style: TextStyle(
+                      color: Color(0xffF0F4EF),
+                      fontSize: 22,
+                    ),
                   ),
                 ),
               ),

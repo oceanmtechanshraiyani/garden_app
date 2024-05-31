@@ -20,11 +20,16 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   TextEditingController t1 = TextEditingController();
-  List<bool> isIconClickedList = List.generate(Myproducts.allProducts.length, (index) => false);
+  List<bool> isIconClickedList = List.generate(
+    Myproducts.allProducts.length,
+    (index) => false,
+  );
   int isSelected = 0;
   bool _showClearButton = false;
 
-  List<Product> displayGrid = List.from(Myproducts.allProducts);
+  List<Product> displayGrid = List.from(
+    Myproducts.allProducts,
+  );
 
   void updateGrid(String value) {
     if (value.isEmpty) {
@@ -33,18 +38,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
       _showClearButton = true;
     }
 
-    setState(() {
-      if (isSelected == 0) {
-        displayGrid = Myproducts.allProducts
-            .where((element) => element.name.toLowerCase().contains(value.toLowerCase()))
-            .toList();
-      } else {
-        displayGrid = Myproducts.allProducts
-            .where(
-                (element) => element.name.toLowerCase().contains(value.toLowerCase()) && element.category == isSelected)
-            .toList();
-      }
-    });
+    setState(
+      () {
+        if (isSelected == 0) {
+          displayGrid = Myproducts.allProducts
+              .where((element) => element.name.toLowerCase().contains(value.toLowerCase()))
+              .toList();
+        } else {
+          displayGrid = Myproducts.allProducts
+              .where((element) =>
+                  element.name.toLowerCase().contains(value.toLowerCase()) && element.category == isSelected)
+              .toList();
+        }
+      },
+    );
   }
 
   @override
@@ -91,7 +98,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
             ),
             child: const Image(
-              image: AssetImage("assets/profile.png"),
+              image: AssetImage(
+                "assets/profile.png",
+              ),
             ),
           ),
         ),
@@ -180,13 +189,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
         decoration: InputDecoration(
           suffixIcon: _showClearButton
               ? IconButton(
-                  icon: SvgPicture.asset("assets/CloseCircle.svg"),
+                  icon: SvgPicture.asset(
+                    "assets/CloseCircle.svg",
+                  ),
                   onPressed: () {
                     t1.clear();
                     updateGrid('');
                   },
                 )
-              : Image.asset("assets/filter.png"),
+              : Image.asset(
+                  "assets/filter.png",
+                ),
           suffixIconConstraints: BoxConstraints(maxHeight: 18.0.w),
           hintTextDirection: TextDirection.ltr,
           prefixIcon: Image.asset(
@@ -229,7 +242,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
             itemCount: Myproducts.categoryList.length,
             itemBuilder: (context, index) {
               final categoryList = Myproducts.categoryList[index];
-              return categoriesdata(index: index, name: categoryList.name);
+              return categoriesdata(
+                index: index,
+                name: categoryList.name,
+              );
             },
           ),
         ),
@@ -237,12 +253,17 @@ class _DashboardScreenState extends State<DashboardScreen> {
     ).marginSymmetric(horizontal: 20.0.h);
   }
 
-  Widget categoriesdata({required int index, required String name}) {
+  Widget categoriesdata({
+    required int index,
+    required String name,
+  }) {
     return GestureDetector(
-      onTap: () => setState(() {
-        isSelected = index;
-        updateGrid(t1.text);
-      }),
+      onTap: () => setState(
+        () {
+          isSelected = index;
+          updateGrid(t1.text);
+        },
+      ),
       child: Row(
         children: [
           Container(
@@ -273,7 +294,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  Widget cardView(BuildContext context) {
+  Widget cardView(
+    BuildContext context,
+  ) {
     return GridView.builder(
       padding: EdgeInsets.all(20.h),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -288,14 +311,12 @@ class _DashboardScreenState extends State<DashboardScreen> {
         final allProducts = displayGrid[index];
         final isLiked = favoritePlants.contains(allProducts);
         return GestureDetector(
-          onTap: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) => DetailScreen(product: allProducts),
-              ),
-            );
-          },
+          onTap: () => Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => DetailScreen(product: allProducts),
+            ),
+          ),
           child: ProductCard(
             product: allProducts,
             onLikeToggle: () {

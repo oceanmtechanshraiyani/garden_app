@@ -34,10 +34,19 @@ class SplashScreen extends StatelessWidget {
       child: Container(
         height: Get.height / 1.4,
         width: Get.width,
-        decoration: const BoxDecoration(color: Color(0xffF0F4EF), boxShadow: [
-          BoxShadow(color: Colors.black, blurRadius: 00, offset: Offset.infinite),
-        ]),
-        child: Image.asset('assets/splash.png'),
+        decoration: const BoxDecoration(
+          color: Color(0xffF0F4EF),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black,
+              blurRadius: 00,
+              offset: Offset.infinite,
+            ),
+          ],
+        ),
+        child: Image.asset(
+          'assets/splash.png',
+        ),
       ),
     );
   }
@@ -60,7 +69,9 @@ class SplashScreen extends StatelessWidget {
       },
       child: Container(
         height: 52.w,
-        padding: EdgeInsets.symmetric(horizontal: 32.0.h),
+        padding: EdgeInsets.symmetric(
+          horizontal: 32.0.h,
+        ),
         decoration: BoxDecoration(
           color: const Color(0xff475E3E),
           borderRadius: BorderRadius.circular(42.r),
@@ -71,13 +82,19 @@ class SplashScreen extends StatelessWidget {
           children: [
             Text(
               "Let’s Start",
-              style: TextStyle(fontSize: 18.sp, color: Colors.white),
+              style: TextStyle(
+                fontSize: 18.sp,
+                color: Colors.white,
+              ),
             ),
             SizedBox(width: 10.w),
             Container(
               padding: const EdgeInsets.all(4),
               decoration: BoxDecoration(
-                border: Border.all(color: Colors.white, width: 0.8.w),
+                border: Border.all(
+                  color: Colors.white,
+                  width: 0.8.w,
+                ),
                 shape: BoxShape.circle,
               ),
               child: Icon(

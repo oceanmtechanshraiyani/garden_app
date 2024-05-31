@@ -18,7 +18,6 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   List<Product> likes = [];
 
   int currentTabIndex = 0;
-  // late List<Widget> pages;
 
   List<Widget> widetOption() {
     return [
@@ -30,15 +29,6 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       const ProfileScreen(),
     ];
   }
-
-  // List<Widget> pages = [
-  //   const DashboardScreen(),
-  //   LikeScreen(
-  //     likedPlant: likes,
-  //   ),
-  //   const ShopingScreen(),
-  //   const ProfileScreen(),
-  // ];
 
   void _onItemTapped(int index) {
     setState(() {
@@ -72,7 +62,6 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
           ),
         ),
       ),
-      // body: pages[currentTabIndex],
       body: IndexedStack(
         index: currentTabIndex,
         children: widetOption(),
@@ -128,11 +117,23 @@ class CustomBottomNavBar extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                _buildNavItem(Icons.home, 0),
-                _buildNavItem(Icons.favorite, 1),
+                _buildNavItem(
+                  Icons.home,
+                  0,
+                ),
+                _buildNavItem(
+                  Icons.favorite,
+                  1,
+                ),
                 SizedBox(width: 10.w),
-                _buildNavItem(Icons.shopping_cart, 2),
-                _buildNavItem(Icons.person, 3),
+                _buildNavItem(
+                  Icons.shopping_cart,
+                  2,
+                ),
+                _buildNavItem(
+                  Icons.person,
+                  3,
+                ),
               ],
             ),
           ),
@@ -141,21 +142,12 @@ class CustomBottomNavBar extends StatelessWidget {
     );
   }
 
-  Widget _buildNavItem(IconData icon, int index) {
+  Widget _buildNavItem(
+    IconData icon,
+    int index,
+  ) {
     return GestureDetector(
-      onTap: () {
-        onItemTapped(index);
-
-        // setState() {
-        //   // index;
-        //   List<Product> likes = [];
-
-        //   final List<Product> likesPlants = Product.getlikePlants();
-
-        //   likes = likesPlants;
-        // }
-      },
-      // onTap: () => onItemTapped(index),
+      onTap: () => onItemTapped(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,

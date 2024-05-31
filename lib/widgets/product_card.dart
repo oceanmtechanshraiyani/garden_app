@@ -19,8 +19,6 @@ class ProductCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // height: MediaQuery.of(context).size.height / 5.5.h,
-      // width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
         color: const Color(0xffF0F4EF),
@@ -93,8 +91,12 @@ class ProductCard extends StatelessWidget {
             child: InkWell(
               onTap: onLikeToggle,
               child: isLiked
-                  ? SvgPicture.asset("assets/bottomnavitems/heart_filled.svg")
-                  : SvgPicture.asset("assets/bottomnavitems/heart_outline.svg"),
+                  ? SvgPicture.asset(
+                      "assets/bottomnavitems/heart_filled.svg",
+                    )
+                  : SvgPicture.asset(
+                      "assets/bottomnavitems/heart_outline.svg",
+                    ),
             ),
           ),
         ],
