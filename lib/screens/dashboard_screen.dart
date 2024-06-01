@@ -235,11 +235,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
-          "Category",
-          style: TextStyle(
-            fontSize: 21.sp,
-            fontWeight: FontWeight.w600,
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: 20.0.w),
+          child: Text(
+            "Category",
+            style: TextStyle(
+              fontSize: 21.sp,
+              fontWeight: FontWeight.w600,
+            ),
+            textAlign: TextAlign.center,
           ),
         ),
         SizedBox(height: 15.h),
@@ -258,7 +262,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ],
-    ).marginSymmetric(horizontal: 20.0.h);
+    );
   }
 
   Widget categoriesdata({
