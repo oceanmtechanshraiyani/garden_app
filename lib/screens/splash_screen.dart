@@ -67,7 +67,7 @@ class SplashScreen extends StatelessWidget {
       onTap: () => Navigator.push(
         context,
         MaterialPageRoute(
-          builder: (context) => BottomNavBarScreen(),
+          builder: (context) => const BottomNavBarScreen(),
         ),
       ),
       child: Container(

@@ -317,7 +317,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
       itemCount: displayGrid.length,
       itemBuilder: (context, index) {
         final allProducts = displayGrid[index];
-        final isLiked = favoritePlants.contains(allProducts);
+        // final isLiked = favoritePlants.contains(allProducts);
         return GestureDetector(
           onTap: () => Navigator.push(
             context,
@@ -328,15 +328,19 @@ class _DashboardScreenState extends State<DashboardScreen> {
           child: ProductCard(
             product: allProducts,
             onLikeToggle: () {
-              setState(() {
-                if (isLiked) {
-                  favoritePlants.remove(allProducts);
-                } else {
-                  favoritePlants.add(allProducts);
-                }
-              });
+              setState(
+                () {
+                  if (favoritePlants.contains(allProducts)) {
+                    // print("=======${favoritePlants.contains(allProducts)}");
+                    favoritePlants.remove(allProducts);
+                    // print("=======${favoritePlants.remove(allProducts)}");
+                  } else {
+                    favoritePlants.add(allProducts);
+                  }
+                },
+              );
             },
-            isLiked: isLiked,
+            isLiked: favoritePlants.contains(allProducts),
           ),
         );
       },

@@ -93,6 +93,7 @@ class ProductCard extends StatelessWidget {
               child: isLiked
                   ? SvgPicture.asset(
                       "assets/bottomnavitems/heart_filled.svg",
+                      color: Colors.red,
                     )
                   : SvgPicture.asset(
                       "assets/bottomnavitems/heart_outline.svg",

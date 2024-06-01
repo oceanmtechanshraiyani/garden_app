@@ -62,15 +62,16 @@ class _LikeScreenState extends State<LikeScreen> {
                   child: ProductCard(
                     product: allProducts,
                     onLikeToggle: () {
-                      setState(
-                        () {
-                          if (favoritePlants.contains(allProducts)) {
-                            favoritePlants.remove(allProducts);
-                          } else {
-                            favoritePlants.add(allProducts);
-                          }
-                        },
-                      );
+                      setState(() {
+                        if (favoritePlants.contains(allProducts)) {
+                          // print("=======${favoritePlants.contains(allProducts)}");
+
+                          favoritePlants.remove(allProducts);
+                          // print("=======${favoritePlants.remove(allProducts)}");
+                        } else {
+                          favoritePlants.add(allProducts);
+                        }
+                      });
                     },
                     isLiked: favoritePlants.contains(allProducts),
                   ),
