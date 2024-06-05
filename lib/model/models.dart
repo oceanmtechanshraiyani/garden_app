@@ -21,8 +21,8 @@ class Product {
   final double price;
   final int quantity;
   final Widget icon;
-  final bool islike;
-  final bool isLikeSelectedIndex;
+   bool islike;
+
 
   Product({
     required this.id,
@@ -35,7 +35,7 @@ class Product {
     required this.quantity,
     required this.icon,
     required this.islike,
-    required this.isLikeSelectedIndex,
+
   });
 
   static List<Product> getlikePlants() {

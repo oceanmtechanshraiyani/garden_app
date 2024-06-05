@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/model/models.dart';
+import 'package:garden_app/screens/dashboard_screen.dart';
 import 'package:garden_app/screens/detailscreen.dart';
 import 'package:garden_app/screens/global.dart';
 import 'package:garden_app/widgets/product_card.dart';
@@ -63,8 +64,25 @@ class _LikeScreenState extends State<LikeScreen> {
                     product: allProducts,
                     onLikeToggle: () {
                       setState(() {
-                        if (favoritePlants.contains(allProducts)) {
+                        List<Product> templist = displayGrid.where((element) => element == allProducts).toList();
+                        print(templist.first.id);
 
+                        if (templist.isNotEmpty) {
+                          templist.first.islike = false;
+                        }
+
+                        int productIndex = displayGrid.indexWhere(
+                          (element) {
+                            print(element.id);
+                            return element.id == templist.first.id;
+                          },
+                        );
+                        print(productIndex);
+                        if (productIndex != -0) {
+                          displayGrid[productIndex].islike = false;
+                        }
+
+                        if (favoritePlants.contains(allProducts)) {
                           favoritePlants.remove(allProducts);
                         }
                       });

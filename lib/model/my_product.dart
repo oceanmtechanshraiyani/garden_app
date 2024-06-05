@@ -37,8 +37,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -55,8 +54,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -73,8 +71,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -94,8 +91,7 @@ class Myproducts {
         ),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -112,8 +108,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -130,8 +125,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -148,8 +142,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -166,8 +159,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -184,8 +176,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
     Product(
       id: 1,
@@ -202,8 +193,7 @@ class Myproducts {
         child: Icon(CupertinoIcons.add, color: Colors.white),
       ),
       image1: 'assets/starrate.png',
-      islike: true,
-      isLikeSelectedIndex: false,
+      islike: false,
     ),
   ];
 }

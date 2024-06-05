@@ -10,8 +10,10 @@ import 'package:garden_app/screens/notification_screen.dart';
 import 'package:garden_app/screens/profile_home_screen.dart';
 import 'package:garden_app/widgets/product_card.dart';
 import 'package:get/get.dart';
+List<Product> displayGrid = Myproducts.allProducts;
 
 class DashboardScreen extends StatefulWidget {
+
   const DashboardScreen({super.key});
 
   @override
@@ -27,9 +29,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   int isSelected = 0;
   bool _showClearButton = false;
 
-  List<Product> displayGrid = List.from(
-    Myproducts.allProducts,
-  );
 
   void updateGrid(String value) {
     if (value.isEmpty) {
@@ -320,27 +319,28 @@ class _DashboardScreenState extends State<DashboardScreen> {
       scrollDirection: Axis.vertical,
       itemCount: displayGrid.length,
       itemBuilder: (context, index) {
-        final allProducts = displayGrid[index];
-        final isLiked = favoritePlants.contains(allProducts);
+        Product product = displayGrid[index];
+        // final isLiked = favoritePlants.contains(allProducts);
         return GestureDetector(
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailScreen(product: allProducts),
+              builder: (context) => DetailScreen(product: product),
             ),
           ),
           child: ProductCard(
-            product: allProducts,
+            product: product,
             onLikeToggle: () => setState(
               () {
-                if (!favoritePlants.contains(allProducts)) {
-                  favoritePlants.add(allProducts);
+                displayGrid[index].islike = (!displayGrid[index].islike);
+                if (!favoritePlants.contains(product)) {
+                  favoritePlants.add(product);
                 } else {
-                  favoritePlants.remove(allProducts);
+                  favoritePlants.remove(product);
                 }
               },
             ),
-            isLiked: isLiked,
+            isLiked: product.islike,
           ),
         );
       },
