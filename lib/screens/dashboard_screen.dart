@@ -331,17 +331,15 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
           child: ProductCard(
             product: allProducts,
-            onLikeToggle: () {
-              setState(
-                () {
-                  if (!favoritePlants.contains(allProducts)) {
-                    favoritePlants.add(allProducts);
-                  } else {
-                    favoritePlants.remove(allProducts);
-                  }
-                },
-              );
-            },
+            onLikeToggle: () => setState(
+              () {
+                if (!favoritePlants.contains(allProducts)) {
+                  favoritePlants.add(allProducts);
+                } else {
+                  favoritePlants.remove(allProducts);
+                }
+              },
+            ),
             isLiked: isLiked,
           ),
         );
