@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/Qr_Screen.dart';
 import 'package:garden_app/custom_nav_bar_screen.dart';
-import 'package:garden_app/model/models.dart';
 import 'package:garden_app/screens/bottom_screen/like_screen.dart';
 import 'package:garden_app/screens/bottom_screen/shoping_screen.dart';
 import 'package:garden_app/screens/dashboard_screen.dart';
@@ -16,16 +15,12 @@ class BottomNavBarScreen extends StatefulWidget {
 }
 
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
-  List<Product> likes = [];
-
   int currentTabIndex = 0;
 
   List<Widget> widetOption() {
     return [
-      const DashboardScreen(),
-      LikeScreen(
-        likedPlant: likes,
-      ),
+      DashboardScreen(key: UniqueKey()),
+      LikeScreen(key: UniqueKey()),
       const ShopingScreen(),
       const ProfileScreen(),
     ];

@@ -7,7 +7,9 @@ import 'package:garden_app/screens/global.dart';
 import 'package:garden_app/widgets/product_card.dart';
 
 class LikeScreen extends StatefulWidget {
-  const LikeScreen({super.key, required List<Product> likedPlant});
+  const LikeScreen({
+    super.key,
+  });
 
   @override
   State<LikeScreen> createState() => _LikeScreenState();

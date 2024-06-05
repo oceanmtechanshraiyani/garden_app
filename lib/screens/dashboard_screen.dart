@@ -10,10 +10,10 @@ import 'package:garden_app/screens/notification_screen.dart';
 import 'package:garden_app/screens/profile_home_screen.dart';
 import 'package:garden_app/widgets/product_card.dart';
 import 'package:get/get.dart';
+
 List<Product> displayGrid = Myproducts.allProducts;
 
 class DashboardScreen extends StatefulWidget {
-
   const DashboardScreen({super.key});
 
   @override
@@ -28,7 +28,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
   );
   int isSelected = 0;
   bool _showClearButton = false;
-
 
   void updateGrid(String value) {
     if (value.isEmpty) {
@@ -277,24 +276,27 @@ class _DashboardScreenState extends State<DashboardScreen> {
       ),
       child: Row(
         children: [
-          Container(
-            height: 40.h,
-            padding: EdgeInsets.symmetric(horizontal: 20.0.h),
-            decoration: BoxDecoration(
-              border: Border.all(
-                color: const Color(0xffD0D5DD),
-                width: 1.5.w,
+          Padding(
+            padding: EdgeInsets.only(left: 7.w),
+            child: Container(
+              height: 40.h,
+              padding: EdgeInsets.symmetric(horizontal: 20.0.h),
+              decoration: BoxDecoration(
+                border: Border.all(
+                  color: const Color(0xffD0D5DD),
+                  width: 1.5.w,
+                ),
+                borderRadius: BorderRadius.circular(29.r),
+                color: isSelected == index ? const Color(0xff475E3E) : const Color(0xffFCFCFD),
               ),
-              borderRadius: BorderRadius.circular(29.r),
-              color: isSelected == index ? const Color(0xff475E3E) : const Color(0xffFCFCFD),
-            ),
-            child: Center(
-              child: Text(
-                name,
-                style: TextStyle(
-                  color: isSelected == index ? const Color(0xffFCFCFD) : const Color(0xffD0D5DD),
-                  fontSize: 18.sp,
-                  fontWeight: isSelected == index ? FontWeight.bold : FontWeight.w600,
+              child: Center(
+                child: Text(
+                  name,
+                  style: TextStyle(
+                    color: isSelected == index ? const Color(0xffFCFCFD) : const Color(0xffD0D5DD),
+                    fontSize: 18.sp,
+                    fontWeight: isSelected == index ? FontWeight.bold : FontWeight.w600,
+                  ),
                 ),
               ),
             ),
@@ -325,7 +327,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
           onTap: () => Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (context) => DetailScreen(product: product),
+              builder: (context) => DetailScreen(product: product, ),
             ),
           ),
           child: ProductCard(

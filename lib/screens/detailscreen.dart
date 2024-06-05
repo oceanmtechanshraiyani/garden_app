@@ -1,10 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
 
 class DetailScreen extends StatefulWidget {
   final Product product;
-  const DetailScreen({super.key, required this.product});
+
+  const DetailScreen({
+    super.key,
+    required this.product,
+  });
 
   @override
   State<DetailScreen> createState() => _DetailScreenState();
@@ -52,8 +57,13 @@ class _DetailScreenState extends State<DetailScreen> {
                 top: 18.0.h,
                 right: 10.w,
               ),
-              child: Image.asset(
-                'assets/like.png',
+              child: IconButton(
+                onPressed: () {},
+                icon:  SvgPicture.asset(
+                        "assets/bottomnavitems/heart_filled.svg",
+                        color: Colors.red,
+                      )
+                    
               ),
             ),
           ],
