@@ -88,7 +88,10 @@ class Myproducts {
       icon: const CircleAvatar(
         backgroundColor: Color(0xffB5C9AD),
         radius: 12,
-        child: Icon(CupertinoIcons.add, color: Colors.white),
+        child: Icon(
+          CupertinoIcons.add,
+          color: Colors.white,
+        ),
       ),
       image1: 'assets/starrate.png',
       islike: true,
