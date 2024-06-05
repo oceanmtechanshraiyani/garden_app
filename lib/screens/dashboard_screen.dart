@@ -190,10 +190,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         decoration: InputDecoration(
           suffixIcon: _showClearButton
               ? InkWell(
-                  onTap: () {
+                  onTap: () => setState(() {
                     t1.clear();
                     updateGrid('');
-                  },
+                  }),
                   child: SvgPicture.asset(
                     "assets/CloseCircle.svg",
                   ),
