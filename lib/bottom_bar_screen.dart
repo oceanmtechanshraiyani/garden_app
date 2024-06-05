@@ -74,7 +74,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   }
 }
 
-class CustomBottomNavBar extends StatelessWidget {
+class CustomBottomNavBar extends StatefulWidget {
   final int currentIndex;
   final ValueChanged<int> onItemTapped;
 
@@ -85,6 +85,11 @@ class CustomBottomNavBar extends StatelessWidget {
   });
 
   @override
+  State<CustomBottomNavBar> createState() => _CustomBottomNavBarState();
+}
+
+class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
+  @override
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
@@ -92,7 +97,6 @@ class CustomBottomNavBar extends StatelessWidget {
         borderRadius: BorderRadius.only(
           topLeft: Radius.circular(35.w),
           topRight: Radius.circular(35.w),
-         
         ),
         boxShadow: [
           BoxShadow(
@@ -146,14 +150,14 @@ class CustomBottomNavBar extends StatelessWidget {
     int index,
   ) {
     return GestureDetector(
-      onTap: () => onItemTapped(index),
+      onTap: () => widget.onItemTapped(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Icon(
             icon,
-            color: currentIndex == index ? const Color(0xff475E3E) : Colors.grey,
+            color: widget.currentIndex == index ? const Color(0xff475E3E) : Colors.grey,
             size: 24.h,
           ),
         ],

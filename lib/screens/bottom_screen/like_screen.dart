@@ -63,13 +63,13 @@ class _LikeScreenState extends State<LikeScreen> {
                     product: allProducts,
                     onLikeToggle: () {
                       setState(() {
-                        if (favoritePlants.contains(allProducts)) {
+                        if (!favoritePlants.contains(allProducts)) {
                           // print("=======${favoritePlants.contains(allProducts)}");
 
-                          favoritePlants.remove(allProducts);
+                          favoritePlants.add(allProducts);
                           // print("=======${favoritePlants.remove(allProducts)}");
                         } else {
-                          favoritePlants.add(allProducts);
+                          favoritePlants.remove(allProducts);
                         }
                       });
                     },

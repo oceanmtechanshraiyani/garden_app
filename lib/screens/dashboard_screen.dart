@@ -7,8 +7,8 @@ import 'package:garden_app/model/my_product.dart';
 import 'package:garden_app/screens/detailscreen.dart';
 import 'package:garden_app/screens/global.dart';
 import 'package:garden_app/screens/notification_screen.dart';
+import 'package:garden_app/screens/profile_home_screen.dart';
 import 'package:garden_app/widgets/product_card.dart';
-import 'package:garden_app/widgets/profile_screen.dart';
 import 'package:get/get.dart';
 
 class DashboardScreen extends StatefulWidget {
@@ -94,7 +94,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ProfileScreen(),
+                builder: (context) => const ProfileHomeScreen(),
               ),
             ),
             child: const Image(

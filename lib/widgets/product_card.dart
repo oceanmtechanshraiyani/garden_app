@@ -4,7 +4,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:garden_app/model/models.dart';
 
-class ProductCard extends StatelessWidget {
+class ProductCard extends StatefulWidget {
   final Product product;
   final VoidCallback onLikeToggle;
   final bool isLiked;
@@ -16,6 +16,11 @@ class ProductCard extends StatelessWidget {
     required this.isLiked,
   });
 
+  @override
+  State<ProductCard> createState() => _ProductCardState();
+}
+
+class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,14 +38,14 @@ class ProductCard extends StatelessWidget {
                 SizedBox(
                   height: 165.h,
                   child: Image.asset(
-                    product.image,
+                    widget.product.image,
                     fit: BoxFit.fill,
                   ),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    product.name,
+                    widget.product.name,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -63,7 +68,7 @@ class ProductCard extends StatelessWidget {
                       ),
                       child: Center(
                         child: Text(
-                          '\$${product.price}',
+                          '\$${widget.product.price}',
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
@@ -89,8 +94,8 @@ class ProductCard extends StatelessWidget {
             top: 8.h,
             right: 8.w,
             child: InkWell(
-              onTap: onLikeToggle,
-              child: isLiked
+              onTap: widget.onLikeToggle,
+              child: widget.isLiked
                   ? SvgPicture.asset(
                       "assets/bottomnavitems/heart_filled.svg",
                       color: Colors.red,
