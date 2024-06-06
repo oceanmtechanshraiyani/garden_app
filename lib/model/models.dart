@@ -21,8 +21,8 @@ class Product {
   final double price;
   final int quantity;
   final Widget icon;
-   bool islike;
-
+  bool islike;
+  bool isSelected;
 
   Product({
     required this.id,
@@ -35,11 +35,17 @@ class Product {
     required this.quantity,
     required this.icon,
     required this.islike,
-
+    required this.isSelected,
   });
 
   static List<Product> getlikePlants() {
     List<Product> travelList = Myproducts.allProducts;
     return travelList.where((element) => element.islike == true).toList();
+  }
+
+  //Get the cart items
+  static List<Product> addedToCartPlants() {
+    List<Product> _selectedPlants = Myproducts.allProducts;
+    return _selectedPlants.where((element) => element.isSelected == true).toList();
   }
 }

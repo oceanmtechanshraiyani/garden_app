@@ -38,6 +38,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -55,6 +56,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -72,6 +74,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -92,6 +95,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -109,6 +113,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -126,6 +131,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -143,6 +149,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -160,6 +167,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -177,6 +185,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
     Product(
       id: 1,
@@ -194,6 +203,7 @@ class Myproducts {
       ),
       image1: 'assets/starrate.png',
       islike: false,
+      isSelected: false,
     ),
   ];
 }
