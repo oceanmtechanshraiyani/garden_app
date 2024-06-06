@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:garden_app/model/models.dart';
 
 class DetailScreen extends StatefulWidget {
   final Product product;
+  final VoidCallback onLikeToggle;
+  final bool isLiked;
 
   const DetailScreen({
     super.key,
     required this.product,
+    required this.onLikeToggle,
+    required this.isLiked,
   });
 
   @override
@@ -17,14 +21,15 @@ class DetailScreen extends StatefulWidget {
 
 class _DetailScreenState extends State<DetailScreen> {
   int number = 0;
+  // Add a variable to track the favorite status
 
-  void incrementnumber() {
+  void incrementNumber() {
     setState(() {
       number++;
     });
   }
 
-  void decrementnumber() {
+  void decrementNumber() {
     setState(() {
       if (number >= 1) {
         number--;
@@ -57,13 +62,21 @@ class _DetailScreenState extends State<DetailScreen> {
                 top: 18.0.h,
                 right: 10.w,
               ),
-              child: IconButton(
-                onPressed: () {},
-                icon:  SvgPicture.asset(
-                        "assets/bottomnavitems/heart_filled.svg",
-                        color: Colors.red,
-                      )
-                    
+              child: CircleAvatar(
+                backgroundColor: Color(0xffB5C9AD),
+                child: IconButton(
+                  onPressed: () {
+                    setState(() {});
+                  },
+                  icon: widget.isLiked
+                      ? SvgPicture.asset(
+                          "assets/bottomnavitems/heart_filled.svg",
+                          color: Colors.red,
+                        )
+                      : SvgPicture.asset(
+                          "assets/bottomnavitems/heart_outline.svg",
+                        ),
+                ),
               ),
             ),
           ],
@@ -170,7 +183,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                               icon: const Icon(
                                                 Icons.remove,
                                               ),
-                                              onPressed: decrementnumber,
+                                              onPressed: decrementNumber,
                                             ),
                                           ),
                                           SizedBox(width: 10.w),
@@ -186,7 +199,7 @@ class _DetailScreenState extends State<DetailScreen> {
                                                 Icons.add,
                                                 color: Colors.white,
                                               ),
-                                              onPressed: incrementnumber,
+                                              onPressed: incrementNumber,
                                             ),
                                           ),
                                         ],
@@ -268,10 +281,11 @@ class _DetailScreenState extends State<DetailScreen> {
                 width: 343,
                 child: TextButton(
                   onPressed: () {},
-                  style: const ButtonStyle(
-                      backgroundColor: WidgetStatePropertyAll(
-                    Color(0xff475E3E),
-                  )),
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.all(
+                      const Color(0xff475E3E),
+                    ),
+                  ),
                   child: const Text(
                     "Buy Now!",
                     style: TextStyle(

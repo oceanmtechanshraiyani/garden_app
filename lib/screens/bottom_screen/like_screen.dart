@@ -59,7 +59,11 @@ class _LikeScreenState extends State<LikeScreen> {
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => DetailScreen(product: allProducts),
+                      builder: (context) => DetailScreen(
+                        product: allProducts,
+                        onLikeToggle: () {},
+                        isLiked: favoritePlants.contains(allProducts),
+                      ),
                     ),
                   ),
                   child: ProductCard(
@@ -67,7 +71,6 @@ class _LikeScreenState extends State<LikeScreen> {
                     onLikeToggle: () {
                       setState(() {
                         List<Product> templist = displayGrid.where((element) => element == allProducts).toList();
-                        print(templist.first.id);
 
                         if (templist.isNotEmpty) {
                           templist.first.islike = false;
@@ -75,11 +78,9 @@ class _LikeScreenState extends State<LikeScreen> {
 
                         int productIndex = displayGrid.indexWhere(
                           (element) {
-                            print(element.id);
                             return element.id == templist.first.id;
                           },
                         );
-                        print(productIndex);
                         if (productIndex != -0) {
                           displayGrid[productIndex].islike = false;
                         }

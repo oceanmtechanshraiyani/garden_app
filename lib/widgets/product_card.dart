@@ -91,18 +91,25 @@ class _ProductCardState extends State<ProductCard> {
             ),
           ),
           Positioned(
-            top: 8.h,
-            right: 8.w,
-            child: InkWell(
-              onTap: widget.onLikeToggle,
-              child: widget.isLiked
-                  ? SvgPicture.asset(
-                      "assets/bottomnavitems/heart_filled.svg",
-                      color: Colors.red,
-                    )
-                  : SvgPicture.asset(
-                      "assets/bottomnavitems/heart_outline.svg",
-                    ),
+            top: 6.h,
+            right: 6.w,
+            child: CircleAvatar(
+              radius: 16.h,
+              backgroundColor: Color(0xffB5C9AD),
+              child: Center(
+                child: InkWell(
+                  onTap: widget.onLikeToggle,
+                  child: widget.isLiked
+                      ? SvgPicture.asset(
+                          "assets/bottomnavitems/heart_filled.svg",
+                          color: Colors.red,
+                        )
+                      : SvgPicture.asset(
+                          "assets/bottomnavitems/heart_filled.svg",
+                          color: Colors.white,
+                        ),
+                ),
+              ),
             ),
           ),
         ],
