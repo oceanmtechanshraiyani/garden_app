@@ -329,11 +329,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
             MaterialPageRoute(
               builder: (context) => DetailScreen(
                 product: product,
-               onLikeToggle: () => setState(() {
-                 
-               }), 
-               isLiked: product.islike, 
-               ),
+                onLikeToggle: () => setState(() {}),
+                isLiked: product.islike,
+              ),
             ),
           ),
           child: ProductCard(
