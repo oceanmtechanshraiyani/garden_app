@@ -1,28 +1,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
+import 'package:garden_app/provider/favourite_provider.dart';
+import 'package:provider/provider.dart';
 
-class ProductCard extends StatefulWidget {
+class ProductCard extends StatelessWidget {
   final Product product;
-  final VoidCallback onLikeToggle;
-  final bool isLiked;
 
   const ProductCard({
-    super.key,
-    required this.product,
-    required this.onLikeToggle,
-    required this.isLiked,
-  });
+    Key? key,
+    required this.product, required void Function() onLikeToggle, required bool isLiked,
+  }) : super(key: key);
 
-  @override
-  State<ProductCard> createState() => _ProductCardState();
-}
-
-class _ProductCardState extends State<ProductCard> {
   @override
   Widget build(BuildContext context) {
+    final favouriteProvider = Provider.of<FavouriteItemProvider>(context);
+
     return Container(
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(20.r),
@@ -38,14 +33,14 @@ class _ProductCardState extends State<ProductCard> {
                 SizedBox(
                   height: 165.h,
                   child: Image.asset(
-                    widget.product.image,
+                    product.image,
                     fit: BoxFit.fill,
                   ),
                 ),
                 Align(
                   alignment: Alignment.centerLeft,
                   child: Text(
-                    widget.product.name,
+                    product.name,
                     style: TextStyle(
                       fontSize: 16.sp,
                       fontWeight: FontWeight.bold,
@@ -68,7 +63,7 @@ class _ProductCardState extends State<ProductCard> {
                       ),
                       child: Center(
                         child: Text(
-                          '\$${widget.product.price}',
+                          '\$${product.price}',
                           style: TextStyle(
                             fontSize: 14.sp,
                             fontWeight: FontWeight.w500,
@@ -95,19 +90,16 @@ class _ProductCardState extends State<ProductCard> {
             right: 6.w,
             child: CircleAvatar(
               radius: 16.h,
-              backgroundColor: Color(0xffB5C9AD),
+              backgroundColor: const Color(0xffB5C9AD),
               child: Center(
                 child: InkWell(
-                  onTap: widget.onLikeToggle,
-                  child: widget.isLiked
-                      ? SvgPicture.asset(
-                          "assets/bottomnavitems/heart_filled.svg",
-                          color: Colors.red,
-                        )
-                      : SvgPicture.asset(
-                          "assets/bottomnavitems/heart_filled.svg",
-                          color: Colors.white,
-                        ),
+                  onTap: () {
+                    favouriteProvider.toggleFavourite(product);
+                  },
+                  child: SvgPicture.asset(
+                    "assets/bottomnavitems/heart_filled.svg",
+                    color: favouriteProvider.isFavourite(product) ? Colors.red : Colors.white,
+                  ),
                 ),
               ),
             ),

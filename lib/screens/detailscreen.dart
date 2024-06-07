@@ -1,28 +1,25 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
+import 'package:garden_app/provider/favourite_provider.dart';
 import 'package:garden_app/screens/bottom_screen/shoping_screen.dart';
+import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
   final Product product;
-  final VoidCallback onLikeToggle;
-  final bool isLiked;
 
   const DetailScreen({
-    super.key,
-    required this.product,
-    required this.onLikeToggle,
-    required this.isLiked,
-  });
+    Key? key,
+    required this.product, required void Function() onLikeToggle, required bool isLiked,
+  }) : super(key: key);
 
   @override
-  State<DetailScreen> createState() => _DetailScreenState();
+  _DetailScreenState createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
   int number = 0;
-  // Add a variable to track the favorite status
   bool isAddedToCart = false;
 
   void incrementNumber() {
@@ -40,12 +37,11 @@ class _DetailScreenState extends State<DetailScreen> {
   }
 
   void addToCart() {
-    // Add logic to add the product to the cart
     setState(() {
       isAddedToCart = true;
     });
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Text('Your product is added to the shopping cart.'),
       ),
     );
@@ -53,6 +49,9 @@ class _DetailScreenState extends State<DetailScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final favouriteProvider = Provider.of<FavouriteItemProvider>(context);
+    final isLiked = favouriteProvider.isFavourite(widget.product);
+
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.white,
@@ -77,19 +76,15 @@ class _DetailScreenState extends State<DetailScreen> {
                 right: 10.w,
               ),
               child: CircleAvatar(
-                backgroundColor: Color(0xffB5C9AD),
+                backgroundColor: const Color(0xffB5C9AD),
                 child: IconButton(
                   onPressed: () {
-                    setState(() {});
+                    favouriteProvider.toggleFavourite(widget.product);
                   },
-                  icon: widget.isLiked
-                      ? SvgPicture.asset(
-                          "assets/bottomnavitems/heart_filled.svg",
-                          color: Colors.red,
-                        )
-                      : SvgPicture.asset(
-                          "assets/bottomnavitems/heart_outline.svg",
-                        ),
+                  icon: SvgPicture.asset(
+                    "assets/bottomnavitems/heart_filled.svg",
+                    color: isLiked ? Colors.red : Colors.white,
+                  ),
                 ),
               ),
             ),
@@ -299,7 +294,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ShopingScreen(),
+                        builder: (context) => const ShopingScreen(),
                       ),
                     );
                   },
@@ -310,7 +305,7 @@ class _DetailScreenState extends State<DetailScreen> {
                   ),
                   child: Text(
                     isAddedToCart ? 'Added to Cart' : 'Buy Now!',
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Color(0xffF0F4EF),
                       fontSize: 22,
                     ),

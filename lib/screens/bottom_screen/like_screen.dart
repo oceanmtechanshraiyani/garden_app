@@ -1,23 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:garden_app/model/models.dart';
-import 'package:garden_app/screens/dashboard_screen.dart';
+import 'package:garden_app/provider/favourite_provider.dart';
 import 'package:garden_app/screens/detailscreen.dart';
-import 'package:garden_app/screens/global.dart';
 import 'package:garden_app/widgets/product_card.dart';
+import 'package:provider/provider.dart';
 
-class LikeScreen extends StatefulWidget {
+class LikeScreen extends StatelessWidget {
   const LikeScreen({
-    super.key,
-  });
+    Key? key,
+  }) : super(key: key);
 
-  @override
-  State<LikeScreen> createState() => _LikeScreenState();
-}
-
-class _LikeScreenState extends State<LikeScreen> {
   @override
   Widget build(BuildContext context) {
+    final favouriteProvider = Provider.of<FavouriteItemProvider>(context);
+    final favoritePlants = favouriteProvider.selectedItems;
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
@@ -54,43 +51,19 @@ class _LikeScreenState extends State<LikeScreen> {
               scrollDirection: Axis.vertical,
               itemCount: favoritePlants.length,
               itemBuilder: (context, index) {
-                final allProducts = favoritePlants[index];
+                final product = favoritePlants[index];
                 return GestureDetector(
                   onTap: () => Navigator.push(
                     context,
                     MaterialPageRoute(
                       builder: (context) => DetailScreen(
-                        product: allProducts,
-                        onLikeToggle: () {},
-                        isLiked: favoritePlants.contains(allProducts),
+                        product: product, onLikeToggle: () {  }, isLiked: product.islike
+                        ,
                       ),
                     ),
                   ),
                   child: ProductCard(
-                    product: allProducts,
-                    onLikeToggle: () {
-                      setState(() {
-                        List<Product> templist = displayGrid.where((element) => element == allProducts).toList();
-
-                        if (templist.isNotEmpty) {
-                          templist.first.islike = false;
-                        }
-
-                        int productIndex = displayGrid.indexWhere(
-                          (element) {
-                            return element.id == templist.first.id;
-                          },
-                        );
-                        if (productIndex != -0) {
-                          displayGrid[productIndex].islike = false;
-                        }
-
-                        if (favoritePlants.contains(allProducts)) {
-                          favoritePlants.remove(allProducts);
-                        }
-                      });
-                    },
-                    isLiked: favoritePlants.contains(allProducts),
+                    product: product, onLikeToggle: () {  }, isLiked: product.islike,
                   ),
                 );
               },
