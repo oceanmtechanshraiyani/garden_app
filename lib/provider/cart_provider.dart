@@ -21,13 +21,13 @@ class CartProvider with ChangeNotifier {
   }
   void decrementItem(Product product) {
     final existingProductIndex = _items.indexWhere((item) => item.id == product.id);
-    _items[existingProductIndex].decrementQuantity(); // Call decrementQuantity method
+    _items[existingProductIndex].decrementQuantity(); 
     notifyListeners();
   }
 
   void incrementItem(Product product) {
     final existingProductIndex = _items.indexWhere((item) => item.id == product.id);
-    _items[existingProductIndex].incrementQuantity(); // Call incrementQuantity method
+    _items[existingProductIndex].incrementQuantity(); 
     notifyListeners();
   }
 }

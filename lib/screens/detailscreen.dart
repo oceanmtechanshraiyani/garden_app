@@ -53,7 +53,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     final favouriteProvider = Provider.of<FavouriteItemProvider>(context);
-    final CartitemProvider = Provider.of<CartProvider>(context);
+    final cartitemProvider = Provider.of<CartProvider>(context);
     final isLiked = favouriteProvider.isFavourite(widget.product);
 
     return SafeArea(
@@ -298,7 +298,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 width: 343,
                 child: TextButton(
                   onPressed: () {
-                    CartitemProvider.addItem(widget.product);
+                    cartitemProvider.addItem(widget.product);
                     addToCart();
 
                     // Navigator.push(
