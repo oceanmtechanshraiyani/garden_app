@@ -76,7 +76,7 @@ class _CustomBottomNavBarState extends State<CustomBottomNavBar> {
     IconData icon,
     int index,
   ) {
-    return GestureDetector(
+    return InkWell(
       onTap: () => widget.onItemTapped(index),
       child: Column(
         mainAxisSize: MainAxisSize.min,

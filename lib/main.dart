@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:garden_app/provider/cart_provider.dart';
 import 'package:garden_app/provider/favourite_provider.dart';
 import 'package:garden_app/provider/like_provider.dart';
 import 'package:garden_app/screens/splash_screen.dart';
@@ -20,6 +21,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => LikeProvider()),
         ChangeNotifierProvider(create: (context) => FavouriteItemProvider()),
+        ChangeNotifierProvider(create: (context) => CartProvider()),
       ],
       child: ScreenUtilInit(
         designSize: const Size(375, 812),

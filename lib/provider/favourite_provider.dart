@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:garden_app/model/models.dart';
 
 class FavouriteItemProvider with ChangeNotifier {
-  List<Product> _selectedItems = [];
+  final List<Product> _selectedItems = [];
 
   List<Product> get selectedItems => _selectedItems;
 

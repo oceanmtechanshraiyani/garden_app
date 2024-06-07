@@ -2,24 +2,27 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
+import 'package:garden_app/provider/cart_provider.dart';
 import 'package:garden_app/provider/favourite_provider.dart';
-import 'package:garden_app/screens/bottom_screen/shoping_screen.dart';
+
 import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
   final Product product;
 
   const DetailScreen({
-    Key? key,
-    required this.product, required void Function() onLikeToggle, required bool isLiked,
-  }) : super(key: key);
+    super.key,
+    required this.product,
+    required void Function() onLikeToggle,
+    required bool isLiked,
+  });
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  int number = 0;
+  int number = 1;
   bool isAddedToCart = false;
 
   void incrementNumber() {
@@ -30,7 +33,7 @@ class _DetailScreenState extends State<DetailScreen> {
 
   void decrementNumber() {
     setState(() {
-      if (number >= 1) {
+      if (number > 1) {
         number--;
       }
     });
@@ -50,6 +53,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     final favouriteProvider = Provider.of<FavouriteItemProvider>(context);
+    final CartitemProvider = Provider.of<CartProvider>(context);
     final isLiked = favouriteProvider.isFavourite(widget.product);
 
     return SafeArea(
@@ -83,7 +87,11 @@ class _DetailScreenState extends State<DetailScreen> {
                   },
                   icon: SvgPicture.asset(
                     "assets/bottomnavitems/heart_filled.svg",
-                    color: isLiked ? Colors.red : Colors.white,
+                    colorFilter: ColorFilter.mode(
+                      isLiked ? Colors.red : Colors.white,
+                      BlendMode.srcIn,
+                    ),
+                    // color: isLiked ? Colors.red : Colors.white,
                   ),
                 ),
               ),
@@ -290,16 +298,18 @@ class _DetailScreenState extends State<DetailScreen> {
                 width: 343,
                 child: TextButton(
                   onPressed: () {
+                    CartitemProvider.addItem(widget.product);
                     addToCart();
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => const ShopingScreen(),
-                      ),
-                    );
+
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => const ShopingScreen(),
+                    //   ),
+                    // );
                   },
                   style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.all(
+                    backgroundColor: WidgetStateProperty.all(
                       const Color(0xff475E3E),
                     ),
                   ),

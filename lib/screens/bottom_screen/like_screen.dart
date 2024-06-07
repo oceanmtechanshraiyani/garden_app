@@ -7,8 +7,8 @@ import 'package:provider/provider.dart';
 
 class LikeScreen extends StatelessWidget {
   const LikeScreen({
-    Key? key,
-  }) : super(key: key);
+    super.key,
+  });
 
   @override
   Widget build(BuildContext context) {

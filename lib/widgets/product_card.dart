@@ -10,9 +10,11 @@ class ProductCard extends StatelessWidget {
   final Product product;
 
   const ProductCard({
-    Key? key,
-    required this.product, required void Function() onLikeToggle, required bool isLiked,
-  }) : super(key: key);
+    super.key,
+    required this.product,
+    required void Function() onLikeToggle,
+    required bool isLiked,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -98,7 +100,9 @@ class ProductCard extends StatelessWidget {
                   },
                   child: SvgPicture.asset(
                     "assets/bottomnavitems/heart_filled.svg",
-                    color: favouriteProvider.isFavourite(product) ? Colors.red : Colors.white,
+                    colorFilter: ColorFilter.mode(
+                        favouriteProvider.isFavourite(product) ? Colors.red : Colors.white, BlendMode.srcIn),
+                    // color: favouriteProvider.isFavourite(product) ? Colors.red : Colors.white,
                   ),
                 ),
               ),
