@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:garden_app/model/models.dart';
+import 'package:garden_app/screens/bottom_screen/shoping_screen.dart';
 
 class DetailScreen extends StatefulWidget {
   final Product product;
@@ -22,6 +23,7 @@ class DetailScreen extends StatefulWidget {
 class _DetailScreenState extends State<DetailScreen> {
   int number = 0;
   // Add a variable to track the favorite status
+  bool isAddedToCart = false;
 
   void incrementNumber() {
     setState(() {
@@ -35,6 +37,18 @@ class _DetailScreenState extends State<DetailScreen> {
         number--;
       }
     });
+  }
+
+  void addToCart() {
+    // Add logic to add the product to the cart
+    setState(() {
+      isAddedToCart = true;
+    });
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text('Your product is added to the shopping cart.'),
+      ),
+    );
   }
 
   @override
@@ -280,14 +294,22 @@ class _DetailScreenState extends State<DetailScreen> {
                 height: 56,
                 width: 343,
                 child: TextButton(
-                  onPressed: () {},
+                  onPressed: () {
+                    addToCart();
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => ShopingScreen(),
+                      ),
+                    );
+                  },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all(
                       const Color(0xff475E3E),
                     ),
                   ),
-                  child: const Text(
-                    "Buy Now!",
+                  child: Text(
+                    isAddedToCart ? 'Added to Cart' : 'Buy Now!',
                     style: TextStyle(
                       color: Color(0xffF0F4EF),
                       fontSize: 22,
