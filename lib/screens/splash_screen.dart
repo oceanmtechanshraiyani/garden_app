@@ -4,9 +4,21 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/bottom_bar_screen.dart';
 import 'package:get/route_manager.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SplashScreen extends StatelessWidget {
   const SplashScreen({super.key});
+
+  Future<void> _navigateToNext(BuildContext context) async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.setBool('seen', true);
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(
+        builder: (context) => const BottomNavBarScreen(),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +76,7 @@ class SplashScreen extends StatelessWidget {
 
   Widget mybutton(BuildContext context) {
     return GestureDetector(
-      onTap: () => Navigator.push(
-        context,
-        MaterialPageRoute(
-          builder: (context) => const BottomNavBarScreen(),
-        ),
-      ),
+      onTap: () => _navigateToNext(context),
       child: Container(
         height: 52.w,
         padding: EdgeInsets.symmetric(

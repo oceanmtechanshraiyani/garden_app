@@ -178,10 +178,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
         color: const Color.fromRGBO(242, 244, 247, 1),
       ),
       child: TextField(
+        controller: t1,
         textAlign: TextAlign.start,
         onChanged: (value) => updateGrid(value),
         cursorColor: const Color(0xff475E3E),
-        controller: t1,
         autofocus: false,
         autocorrect: false,
         keyboardType: TextInputType.text,

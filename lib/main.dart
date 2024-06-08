@@ -7,13 +7,21 @@ import 'package:garden_app/screens/splash_screen.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'bottom_bar_screen.dart';
 
-void main() {
-  runApp(const MyApp());
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SharedPreferences prefs = await SharedPreferences.getInstance();
+  bool seen = prefs.getBool('seen') ?? false;
+
+  runApp(MyApp(seen: seen));
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+  final bool seen;
+
+  const MyApp({super.key, required this.seen});
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +41,7 @@ class MyApp extends StatelessWidget {
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),
             debugShowCheckedModeBanner: false,
-            home: const SplashScreen(),
+            home: seen ? const BottomNavBarScreen() : const SplashScreen(),
           );
         },
       ),
