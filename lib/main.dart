@@ -4,7 +4,6 @@ import 'package:garden_app/provider/cart_provider.dart';
 import 'package:garden_app/provider/favourite_provider.dart';
 import 'package:garden_app/provider/like_provider.dart';
 import 'package:garden_app/screens/splash_screen.dart';
-import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -36,7 +35,7 @@ class MyApp extends StatelessWidget {
         minTextAdapt: true,
         splitScreenMode: true,
         builder: (context, child) {
-          return GetMaterialApp(
+          return MaterialApp(
             theme: ThemeData(
               textTheme: GoogleFonts.poppinsTextTheme(),
             ),

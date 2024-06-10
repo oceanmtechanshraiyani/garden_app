@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:get/get.dart';
+
 
 class ProfileHomeScreen extends StatefulWidget {
   const ProfileHomeScreen({super.key});
@@ -20,6 +20,7 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
         title: const Text('Profile'),
       ),
       body: Container(
+        margin: EdgeInsets.symmetric(horizontal: 20.0.h),
         alignment: Alignment.center,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
@@ -61,7 +62,7 @@ class _ProfileHomeScreenState extends State<ProfileHomeScreen> {
                   ),
                 ),
               ],
-            ).marginSymmetric(horizontal: 20.0.h),
+            ),
           ],
         ),
       ),

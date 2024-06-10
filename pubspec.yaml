@@ -37,7 +37,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   # gap: ^3.0.1
   # barcode_widget: ^2.0.4
-  get: ^4.6.6
+  # get: ^4.6.6
   shape_of_view_null_safe: ^3.0.0
   google_fonts: ^6.2.1
   # dot_navigation_bar: ^1.0.2
