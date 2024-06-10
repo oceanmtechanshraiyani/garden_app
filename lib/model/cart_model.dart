@@ -1,13 +1,15 @@
-class CartModel {
+class CartItemtModel {
   final int id;
   final String name;
   final double price;
   int quantity;
 
-  CartModel({
+  CartItemtModel({
     required this.id,
     required this.name,
     required this.price,
     required this.quantity,
   });
 }
+
+List<CartItemtModel> cartItems = [];

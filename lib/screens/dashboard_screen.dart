@@ -9,7 +9,7 @@ import 'package:garden_app/screens/global.dart';
 import 'package:garden_app/screens/notification_screen.dart';
 import 'package:garden_app/screens/profile_home_screen.dart';
 import 'package:garden_app/widgets/product_card.dart';
-import 'package:get/get.dart';
+// import 'package:get/get.dart';
 
 List<Product> displayGrid = Myproducts.allProducts;
 
@@ -84,92 +84,98 @@ class _DashboardScreenState extends State<DashboardScreen> {
   }
 
   Widget topbar() {
-    return Row(
-      children: [
-        CircleAvatar(
-          radius: 22.r,
-          child: GestureDetector(
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20.h),
+      child: Row(
+        children: [
+          CircleAvatar(
+            radius: 22.r,
+            child: GestureDetector(
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => const ProfileHomeScreen(),
+                ),
+              ),
+              child: const Image(
+                image: AssetImage(
+                  "assets/profile.png",
+                ),
+              ),
+            ),
+          ),
+          SizedBox(width: 12.w),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Welcome',
+                style: TextStyle(
+                  fontSize: 14.sp,
+                  fontWeight: FontWeight.w500,
+                  color: const Color(0xff98A2B3),
+                ),
+              ),
+              Text(
+                'Jeet',
+                style: TextStyle(
+                  fontSize: 22.sp,
+                  fontWeight: FontWeight.w600,
+                  color: const Color(0xff344054),
+                ),
+              ),
+            ],
+          ),
+          const Spacer(),
+          GestureDetector(
             onTap: () => Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => const ProfileHomeScreen(),
+                builder: (context) => const NotificationScreen(),
               ),
             ),
-            child: const Image(
-              image: AssetImage(
-                "assets/profile.png",
+            child: CircleAvatar(
+              radius: 21.r,
+              backgroundColor: const Color(0xffF2F4F7),
+              child: Image.asset(
+                'assets/notification.png',
+                height: 20.h,
               ),
             ),
           ),
-        ),
-        SizedBox(width: 12.w),
-        Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Text(
-              'Welcome',
-              style: TextStyle(
-                fontSize: 14.sp,
-                fontWeight: FontWeight.w500,
-                color: const Color(0xff98A2B3),
-              ),
-            ),
-            Text(
-              'Jeet',
-              style: TextStyle(
-                fontSize: 22.sp,
-                fontWeight: FontWeight.w600,
-                color: const Color(0xff344054),
-              ),
-            ),
-          ],
-        ),
-        const Spacer(),
-        GestureDetector(
-          onTap: () => Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => const NotificationScreen(),
-            ),
-          ),
-          child: CircleAvatar(
-            radius: 21.r,
-            backgroundColor: const Color(0xffF2F4F7),
-            child: Image.asset(
-              'assets/notification.png',
-              height: 20.h,
-            ),
-          ),
-        ),
-      ],
-    ).marginSymmetric(horizontal: 18.0.h);
+        ],
+      ),
+    );
   }
 
   Widget location() {
-    return Row(
-      children: [
-        Icon(
-          CupertinoIcons.location_solid,
-          color: const Color(0xffD0D5DD),
-          size: 14.h,
-        ),
-        SizedBox(width: 6.0.w),
-        Text(
-          'Surat, Gujarat',
-          style: TextStyle(
-            fontSize: 14.sp,
-            fontWeight: FontWeight.bold,
+    return Container(
+      margin: EdgeInsets.symmetric(horizontal: 20.h),
+      child: Row(
+        children: [
+          Icon(
+            CupertinoIcons.location_solid,
             color: const Color(0xffD0D5DD),
+            size: 14.h,
           ),
-        ),
-      ],
-    ).marginSymmetric(horizontal: 20.0.h);
+          SizedBox(width: 6.0.w),
+          Text(
+            'Surat, Gujarat',
+            style: TextStyle(
+              fontSize: 14.sp,
+              fontWeight: FontWeight.bold,
+              color: const Color(0xffD0D5DD),
+            ),
+          ),
+        ],
+      ),
+    );
   }
 
   Widget searchbar() {
     return Container(
       alignment: Alignment.center,
-      width: Get.width.w,
+      // width: Get.width.w,
       height: 40.0.h,
       margin: EdgeInsets.symmetric(horizontal: 16.0.h),
       padding: EdgeInsets.symmetric(horizontal: 14.0.h),
@@ -352,4 +358,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
       },
     );
   }
+
+
 }

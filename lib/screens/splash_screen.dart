@@ -2,7 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:garden_app/bottom_bar_screen.dart';
-import 'package:get/route_manager.dart';
 import 'package:shape_of_view_null_safe/shape_of_view_null_safe.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -25,7 +24,7 @@ class SplashScreen extends StatelessWidget {
     return Scaffold(
       body: Column(
         children: [
-          splashImage(),
+          splashImage(context),
           SizedBox(height: 10.h),
           title(),
           SizedBox(height: 14.h),
@@ -35,7 +34,7 @@ class SplashScreen extends StatelessWidget {
     );
   }
 
-  Widget splashImage() {
+  Widget splashImage(BuildContext context) {
     return ShapeOfView(
       shape: ArcShape(
         direction: ArcDirection.Outside,
@@ -44,14 +43,14 @@ class SplashScreen extends StatelessWidget {
       ),
       elevation: 0,
       child: Container(
-        height: Get.height / 1.4,
-        width: Get.width,
+        height: MediaQuery.of(context).size.height / 1.4,
+        width: MediaQuery.of(context).size.width,
         decoration: const BoxDecoration(
           color: Color(0xffF0F4EF),
           boxShadow: [
             BoxShadow(
               color: Colors.black,
-              blurRadius: 00,
+              blurRadius: 0,
               offset: Offset.infinite,
             ),
           ],

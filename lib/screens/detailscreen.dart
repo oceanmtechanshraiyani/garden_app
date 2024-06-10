@@ -4,7 +4,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:garden_app/model/models.dart';
 import 'package:garden_app/provider/cart_provider.dart';
 import 'package:garden_app/provider/favourite_provider.dart';
-
 import 'package:provider/provider.dart';
 
 class DetailScreen extends StatefulWidget {
@@ -39,12 +38,18 @@ class _DetailScreenState extends State<DetailScreen> {
     });
   }
 
-  void addToCart() {
+  void addToCart(CartProvider cartProvider) {
+    widget.product.quantity = number; // Set the product quantity
+    cartProvider.addItem(widget.product); // Add the product to the cart
+
     setState(() {
       isAddedToCart = true;
     });
+
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
+        duration: Duration(milliseconds: 100),
+        
         content: Text('Your product is added to the shopping cart.'),
       ),
     );
@@ -53,7 +58,7 @@ class _DetailScreenState extends State<DetailScreen> {
   @override
   Widget build(BuildContext context) {
     final favouriteProvider = Provider.of<FavouriteItemProvider>(context);
-    final cartitemProvider = Provider.of<CartProvider>(context);
+    final cartProvider = Provider.of<CartProvider>(context);
     final isLiked = favouriteProvider.isFavourite(widget.product);
 
     return SafeArea(
@@ -91,7 +96,6 @@ class _DetailScreenState extends State<DetailScreen> {
                       isLiked ? Colors.red : Colors.white,
                       BlendMode.srcIn,
                     ),
-                    // color: isLiked ? Colors.red : Colors.white,
                   ),
                 ),
               ),
@@ -298,15 +302,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 width: 343,
                 child: TextButton(
                   onPressed: () {
-                    cartitemProvider.addItem(widget.product);
-                    addToCart();
-
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => const ShopingScreen(),
-                    //   ),
-                    // );
+                    addToCart(cartProvider);
                   },
                   style: ButtonStyle(
                     backgroundColor: WidgetStateProperty.all(
@@ -314,7 +310,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     ),
                   ),
                   child: Text(
-                    isAddedToCart ? 'Added to Cart' : 'Buy Now!',
+                    isAddedToCart ? 'Go to Cart' : 'Add to Cart',
                     style: const TextStyle(
                       color: Color(0xffF0F4EF),
                       fontSize: 22,

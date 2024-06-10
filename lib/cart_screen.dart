@@ -4,8 +4,8 @@ import 'package:garden_app/model/models.dart';
 import 'package:garden_app/provider/cart_provider.dart';
 import 'package:provider/provider.dart';
 
-class ShopingScreen extends StatelessWidget {
-  const ShopingScreen({super.key});
+class CartScreen extends StatelessWidget {
+  const CartScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,6 @@ class ShopingScreen extends StatelessWidget {
       backgroundColor: const Color.fromARGB(255, 255, 255, 255),
       appBar: AppBar(
         backgroundColor: const Color.fromARGB(255, 255, 255, 255),
-        automaticallyImplyLeading: false,
         title: const Text('Shopping Cart'),
       ),
       body: ListView.builder(
@@ -69,10 +68,28 @@ class ShopingScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+
+                  // Row(
+                  //   children: [
+                  //     IconButton(
+                  //       icon: Icon(Icons.remove),
+                  //       onPressed: () {
+                  //         cartProvider.decrementItem(product);
+                  //       },
+                  //     ),
+                  //     Text(product.quantity.toString()),
+                  //     IconButton(
+                  //       icon: Icon(Icons.add),
+                  //       onPressed: () {
+                  //         cartProvider.incrementItem(product);
+                  //       },
+                  //     ),
+                  //   ],
+                  // ),
                 ],
               ),
               trailing: IconButton(
-                icon: const Icon(Icons.delete),
+                icon: Icon(Icons.delete),
                 onPressed: () {
                   cartProvider.removeItem(product);
                 },
@@ -85,8 +102,9 @@ class ShopingScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            'Total Price: \$${cartProvider.totalPrice.toStringAsFixed(2)}',
-            style: const TextStyle(fontSize: 18),
+            // 'Total Price: \$${cartProvider.totalPrice.toStringAsFixed(2)}',
+            '',
+            style: TextStyle(fontSize: 18),
           ),
         ),
       ),

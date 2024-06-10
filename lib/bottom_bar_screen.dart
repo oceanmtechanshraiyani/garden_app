@@ -19,8 +19,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
 
   List<Widget> widetOption() {
     return [
-      DashboardScreen(key: UniqueKey()),
-      LikeScreen(key: UniqueKey()),
+      DashboardScreen(),
+      LikeScreen(),
       const ShopingScreen(),
       const ProfileScreen(),
     ];
